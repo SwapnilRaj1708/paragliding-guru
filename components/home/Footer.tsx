@@ -1,127 +1,268 @@
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import Logo from "./Logo";
 
-const aboutLinks = ["About Instructor", "About PG Gurukul", "Regulations"];
-const courseLinks = [
-	"Integrated P1 to thermaling",
-	"P1+P2",
-	"P3",
-	"Paramotoring Courses",
-	"Advance Training",
-	"SIV Courses",
+const footerLinks = {
+	courses: [
+		"P1+P2 Foundation",
+		"P3 Thermal Skills",
+		"Integrated Pro",
+		"SIV Safety Training",
+		"Paramotor Course",
+		"XC Cross-Country",
+	],
+	company: ["About Us", "Our Instructor", "Gallery", "Testimonials", "FAQs"],
+	support: ["Contact Us", "Location", "Booking Policy", "Safety Guidelines"],
+};
+
+const socialLinks = [
+	{ icon: FacebookIcon, label: "Facebook", href: "#" },
+	{ icon: InstagramIcon, label: "Instagram", href: "#" },
+	{ icon: YouTubeIcon, label: "YouTube", href: "#" },
+	{ icon: LinkedInIcon, label: "LinkedIn", href: "#" },
 ];
-const accommodationLinks = ["About Bir"];
 
-const FooterBottom = () => {
-	"use client";
-
+export default function Footer() {
 	const currentYear = new Date().getFullYear();
 
 	return (
 		<Box
+			component="footer"
 			sx={{
-				bgcolor: "#F6F6F6",
-				color: "#3D3D3F",
-				px: { xs: 2, md: 9 },
-				py: 3,
-				display: "flex",
-				flexDirection: { xs: "column", md: "row" },
-				justifyContent: "space-between",
-				textAlign: { xs: "center", md: "left" },
-				gap: 1,
+				background: "linear-gradient(180deg, #0F172A 0%, #020617 100%)",
+				color: "#FFFFFF",
 			}}
 		>
-			<Typography variant="body1" fontWeight={500}>
-				© {currentYear} PG Gurukul Pvt. Ltd. All Rights Reserved.
-			</Typography>
-			<Typography variant="body2">
-				Designed by:{" "}
-				<a
-					href="https://elnovalabs.com"
-					target="_blank"
-					rel="noopener noreferrer"
+			{/* Main Footer */}
+			<Box
+				sx={{
+					maxWidth: 1200,
+					mx: "auto",
+					px: { xs: 2, md: 4 },
+					py: { xs: 6, md: 8 },
+				}}
+			>
+				<Box
+					sx={{
+						display: "grid",
+						gridTemplateColumns: {
+							xs: "1fr",
+							sm: "repeat(2, 1fr)",
+							md: "2fr repeat(3, 1fr)",
+						},
+						gap: { xs: 4, md: 6 },
+					}}
 				>
-					EL Nova Labs
-				</a>
-			</Typography>
-		</Box>
-	);
-};
+					{/* Brand Column */}
+					<Box>
+						<Logo size="lg" />
+						<Typography
+							sx={{
+								color: "rgba(255,255,255,0.7)",
+								mt: 3,
+								mb: 4,
+								maxWidth: 280,
+								fontSize: 14,
+								lineHeight: 1.7,
+							}}
+						>
+							India's premier paragliding school offering certified training in
+							the stunning Himalayan landscapes since 1993.
+						</Typography>
+						<Stack direction="row" spacing={1}>
+							{socialLinks.map((social) => {
+								const Icon = social.icon;
+								return (
+									<IconButton
+										key={social.label}
+										aria-label={social.label}
+										href={social.href}
+										sx={{
+											bgcolor: "rgba(255,255,255,0.05)",
+											color: "rgba(255,255,255,0.7)",
+											border: "1px solid rgba(255,255,255,0.1)",
+											transition: "all 0.2s ease",
+											"&:hover": {
+												bgcolor: "#0D5C8F",
+												color: "#FFFFFF",
+												borderColor: "#0D5C8F",
+												transform: "translateY(-2px)",
+											},
+										}}
+									>
+										<Icon fontSize="small" />
+									</IconButton>
+								);
+							})}
+						</Stack>
+					</Box>
 
-export default function Footer() {
-	return (
-		<Box
-			component="footer"
-			sx={{ bgcolor: "#575759", color: "#FFFFFF", pt: 8 }}
-		>
-			<Box sx={{ px: { xs: 2, md: 9 }, pb: 6 }}>
-				<Stack
-					direction={{ xs: "column", md: "row" }}
-					spacing={{ xs: 4, md: 8 }}
-					justifyContent="space-between"
-				>
-					<Logo size="lg" />
-					<div className="flex flex-col gap-x-8 gap-y-8 justify-start flex-wrap md:flex-row">
-						<Stack spacing={1}>
-							<Typography variant="h6" color="#CDCDCD">
-								About us
-							</Typography>
-							{aboutLinks.map((link) => (
-								<Typography key={link} variant="body2" color="#FFFFFF">
+					{/* Courses Column */}
+					<Box>
+						<Typography
+							sx={{
+								fontWeight: 600,
+								fontSize: 14,
+								textTransform: "uppercase",
+								letterSpacing: "0.1em",
+								color: "rgba(255,255,255,0.5)",
+								mb: 2.5,
+							}}
+						>
+							Courses
+						</Typography>
+						<Stack spacing={1.5}>
+							{footerLinks.courses.map((link) => (
+								<Typography
+									key={link}
+									component="a"
+									href="#courses"
+									sx={{
+										color: "rgba(255,255,255,0.7)",
+										fontSize: 14,
+										textDecoration: "none",
+										transition: "color 0.2s ease",
+										"&:hover": {
+											color: "#1A8FD1",
+										},
+									}}
+								>
 									{link}
 								</Typography>
 							))}
 						</Stack>
-						<Stack spacing={1}>
-							<Typography variant="h6" color="#CDCDCD">
-								Courses
-							</Typography>
-							{courseLinks.map((link) => (
-								<Typography key={link} variant="body2" color="#FFFFFF">
+					</Box>
+
+					{/* Company Column */}
+					<Box>
+						<Typography
+							sx={{
+								fontWeight: 600,
+								fontSize: 14,
+								textTransform: "uppercase",
+								letterSpacing: "0.1em",
+								color: "rgba(255,255,255,0.5)",
+								mb: 2.5,
+							}}
+						>
+							Company
+						</Typography>
+						<Stack spacing={1.5}>
+							{footerLinks.company.map((link) => (
+								<Typography
+									key={link}
+									component="a"
+									href="#"
+									sx={{
+										color: "rgba(255,255,255,0.7)",
+										fontSize: 14,
+										textDecoration: "none",
+										transition: "color 0.2s ease",
+										"&:hover": {
+											color: "#1A8FD1",
+										},
+									}}
+								>
 									{link}
 								</Typography>
 							))}
 						</Stack>
-						<Stack spacing={1}>
-							<Typography variant="h6" color="#CDCDCD">
-								Accommodation
-							</Typography>
-							{accommodationLinks.map((link) => (
-								<Typography key={link} variant="body2" color="#FFFFFF">
+					</Box>
+
+					{/* Support Column */}
+					<Box>
+						<Typography
+							sx={{
+								fontWeight: 600,
+								fontSize: 14,
+								textTransform: "uppercase",
+								letterSpacing: "0.1em",
+								color: "rgba(255,255,255,0.5)",
+								mb: 2.5,
+							}}
+						>
+							Support
+						</Typography>
+						<Stack spacing={1.5}>
+							{footerLinks.support.map((link) => (
+								<Typography
+									key={link}
+									component="a"
+									href="#contact"
+									sx={{
+										color: "rgba(255,255,255,0.7)",
+										fontSize: 14,
+										textDecoration: "none",
+										transition: "color 0.2s ease",
+										"&:hover": {
+											color: "#1A8FD1",
+										},
+									}}
+								>
 									{link}
 								</Typography>
 							))}
 						</Stack>
-					</div>
-					<Stack direction="row" spacing={1}>
-						{[
-							{ icon: FacebookIcon, label: "Facebook" },
-							{ icon: InstagramIcon, label: "Instagram" },
-							{ icon: LinkedInIcon, label: "LinkedIn" },
-							{ icon: MailOutlineIcon, label: "Email" },
-						].map(({ icon: Icon, label }) => (
-							<IconButton
-								key={label}
-								aria-label={label}
-								sx={{
-									bgcolor: "#3D3D3F",
-									color: "#FFFFFF",
-									"&:hover": { bgcolor: "#2A2A2A" },
-									aspectRatio: 1 / 1,
-									height: "fit-content",
-								}}
-							>
-								<Icon fontSize="small" />
-							</IconButton>
-						))}
-					</Stack>
-				</Stack>
+					</Box>
+				</Box>
 			</Box>
-			<FooterBottom />
+
+			{/* Bottom Bar */}
+			<Box
+				sx={{
+					borderTop: "1px solid rgba(255,255,255,0.1)",
+				}}
+			>
+				<Box
+					sx={{
+						maxWidth: 1200,
+						mx: "auto",
+						px: { xs: 2, md: 4 },
+						py: 3,
+						display: "flex",
+						flexDirection: { xs: "column", md: "row" },
+						justifyContent: "space-between",
+						alignItems: "center",
+						gap: 2,
+					}}
+				>
+					<Typography
+						sx={{
+							color: "rgba(255,255,255,0.5)",
+							fontSize: 14,
+						}}
+					>
+						© {currentYear} PG Gurukul. All rights reserved.
+					</Typography>
+					<Typography
+						sx={{
+							color: "rgba(255,255,255,0.5)",
+							fontSize: 14,
+						}}
+					>
+						Designed with ♥ by{" "}
+						<Box
+							component="a"
+							href="https://elnovalabs.com"
+							target="_blank"
+							rel="noopener noreferrer"
+							sx={{
+								color: "#1A8FD1",
+								textDecoration: "none",
+								fontWeight: 500,
+								"&:hover": {
+									textDecoration: "underline",
+								},
+							}}
+						>
+							EL Nova Labs
+						</Box>
+					</Typography>
+				</Box>
+			</Box>
 		</Box>
 	);
 }

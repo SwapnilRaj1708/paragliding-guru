@@ -15,17 +15,27 @@ import {
 	Stack,
 	Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "./Logo";
 
 const navItems = [
 	{ label: "Courses", withCaret: true, href: "#courses" },
-	{ label: "Locations", withCaret: true, href: "#contact" },
-	{ label: "About us", withCaret: false, href: "#about" },
+	{ label: "Gallery", withCaret: false, href: "#gallery" },
+	{ label: "About", withCaret: false, href: "#about" },
+	{ label: "FAQs", withCaret: false, href: "#faqs" },
 ];
 
 export default function Navbar() {
 	const [mobileOpen, setMobileOpen] = useState(false);
+	const [scrolled, setScrolled] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			setScrolled(window.scrollY > 50);
+		};
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
 
 	const handleToggle = () => {
 		setMobileOpen((prev) => !prev);
@@ -41,28 +51,36 @@ export default function Navbar() {
 			sx={{
 				position: "fixed",
 				width: "100%",
+				maxWidth: 1520,
 				top: 0,
 				zIndex: 1100,
-				bgcolor: "rgba(87, 87, 89, 0.8)",
-				backdropFilter: "blur(2px)",
-				maxWidth: 1520,
+				transition: "all 0.3s ease",
+				bgcolor: "#3d3d3fc2",
+				// bgcolor: scrolled ? "rgba(15, 23, 42, 0.95)" : "rgba(15, 23, 42, 0.7)",
+				backdropFilter: "blur(20px)",
+				borderBottom: scrolled
+					? "1px solid rgba(255,255,255,0.1)"
+					: "1px solid transparent",
+				boxShadow: scrolled ? "0 4px 30px rgba(0,0,0,0.3)" : "none",
 			}}
 		>
 			<Box
 				sx={{
+					maxWidth: 1400,
+					mx: "auto",
 					display: "flex",
 					alignItems: "center",
 					justifyContent: "space-between",
-					px: { xs: 2, md: 9 },
-					py: 1.5,
-					minHeight: 68,
+					px: { xs: 2, md: 4 },
+					py: scrolled ? 1.5 : 2,
+					transition: "padding 0.3s ease",
 					color: "#FFFFFF",
 				}}
 			>
 				<Logo size="sm" />
 				<Stack
 					direction="row"
-					spacing={1}
+					spacing={0.5}
 					alignItems="center"
 					sx={{ display: { xs: "none", md: "flex" } }}
 				>
@@ -73,30 +91,42 @@ export default function Navbar() {
 							href={item.href}
 							endIcon={item.withCaret ? <ArrowDropDownIcon /> : undefined}
 							sx={{
-								color: "inherit",
-								fontSize: 16,
-								fontWeight: 400,
+								color: "rgba(255,255,255,0.85)",
+								fontSize: 15,
+								fontWeight: 500,
+								px: 2,
+								py: 1,
+								borderRadius: 2,
+								transition: "all 0.2s ease",
+								"&:hover": {
+									color: "#FFFFFF",
+									bgcolor: "rgba(255,255,255,0.1)",
+								},
 								"& .MuiButton-endIcon": {
 									ml: 0.5,
 								},
 							}}
 						>
-							<Typography component="span" sx={{ fontSize: 16 }}>
-								{item.label}
-							</Typography>
+							{item.label}
 						</Button>
 					))}
 					<Button
 						variant="contained"
-						color="primary"
 						href="#contact"
 						sx={{
-							ml: { xs: 0, md: 2 },
-							px: 2,
-							py: 0.75,
+							ml: 2,
+							px: 3,
+							py: 1,
 							fontSize: 14,
-							boxShadow:
-								"0px 1px 5px rgba(0,0,0,0.12), 0px 2px 2px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.2)",
+							fontWeight: 600,
+							// background: "linear-gradient(135deg, #E85D04 0%, #FF7B29 100%)",
+							// border: "none",
+							// boxShadow: "0 4px 15px rgba(232, 93, 4, 0.4)",
+							// "&:hover": {
+							// 	background: "linear-gradient(135deg, #FF7B29 0%, #E85D04 100%)",
+							// 	boxShadow: "0 6px 20px rgba(232, 93, 4, 0.5)",
+							// 	transform: "translateY(-1px)",
+							// },
 						}}
 					>
 						Apply Now
@@ -106,7 +136,14 @@ export default function Navbar() {
 					edge="end"
 					aria-label="Open navigation menu"
 					onClick={handleToggle}
-					sx={{ color: "inherit", display: { xs: "inline-flex", md: "none" } }}
+					sx={{
+						color: "inherit",
+						display: { xs: "inline-flex", md: "none" },
+						bgcolor: "rgba(255,255,255,0.1)",
+						"&:hover": {
+							bgcolor: "rgba(255,255,255,0.2)",
+						},
+					}}
 				>
 					<MenuIcon />
 				</IconButton>
@@ -119,8 +156,9 @@ export default function Navbar() {
 				sx={{ display: { xs: "block", md: "none" } }}
 				PaperProps={{
 					sx: {
-						width: { xs: "78%", sm: 320 },
-						bgcolor: "rgba(42, 42, 44, 0.98)",
+						width: { xs: "85%", sm: 340 },
+						// background: "linear-gradient(180deg, #0F172A 0%, #1E293B 100%)",
+						bgcolor: "#3d3d3ffc",
 						color: "#FFFFFF",
 					},
 				}}
@@ -130,28 +168,42 @@ export default function Navbar() {
 						display: "flex",
 						alignItems: "center",
 						justifyContent: "space-between",
-						px: 2,
-						py: 1.5,
+						px: 3,
+						py: 2.5,
 					}}
 				>
 					<Logo size="sm" />
 					<IconButton
 						aria-label="Close navigation menu"
 						onClick={handleClose}
-						sx={{ color: "inherit" }}
+						sx={{
+							color: "inherit",
+							bgcolor: "rgba(255,255,255,0.1)",
+							"&:hover": {
+								bgcolor: "rgba(255,255,255,0.2)",
+							},
+						}}
 					>
 						<CloseIcon />
 					</IconButton>
 				</Box>
-				<Divider sx={{ borderColor: "rgba(255,255,255,0.12)" }} />
-				<List sx={{ px: 1, py: 1 }}>
+				<Divider sx={{ borderColor: "rgba(255,255,255,0.1)" }} />
+				<List sx={{ px: 2, py: 2 }}>
 					{navItems.map((item) => (
-						<ListItem key={item.label} disablePadding>
+						<ListItem key={item.label} disablePadding sx={{ mb: 0.5 }}>
 							<ListItemButton
 								component="a"
 								href={item.href}
 								onClick={handleClose}
-								sx={{ px: 2, py: 1.25, color: "inherit" }}
+								sx={{
+									px: 2,
+									py: 1.5,
+									color: "inherit",
+									borderRadius: 2,
+									"&:hover": {
+										bgcolor: "rgba(255,255,255,0.1)",
+									},
+								}}
 							>
 								<Stack
 									direction="row"
@@ -166,21 +218,29 @@ export default function Navbar() {
 										{item.label}
 									</Typography>
 									{item.withCaret ? (
-										<ArrowDropDownIcon fontSize="small" />
+										<ArrowDropDownIcon fontSize="small" sx={{ opacity: 0.7 }} />
 									) : null}
 								</Stack>
 							</ListItemButton>
 						</ListItem>
 					))}
 				</List>
-				<Box sx={{ px: 2, pb: 2 }}>
+				<Box sx={{ px: 3, pb: 3 }}>
 					<Button
 						variant="contained"
-						color="primary"
 						href="#contact"
 						fullWidth
 						onClick={handleClose}
-						sx={{ py: 1 }}
+						sx={{
+							py: 1.5,
+							fontSize: 15,
+							fontWeight: 600,
+							// background: "linear-gradient(135deg, #E85D04 0%, #FF7B29 100%)",
+							// boxShadow: "0 4px 15px rgba(232, 93, 4, 0.4)",
+							// "&:hover": {
+							// 	background: "linear-gradient(135deg, #FF7B29 0%, #E85D04 100%)",
+							// },
+						}}
 					>
 						Apply Now
 					</Button>

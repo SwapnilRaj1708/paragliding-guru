@@ -1,6 +1,30 @@
-import { Box, Stack, Typography } from "@mui/material";
+import VerifiedIcon from "@mui/icons-material/Verified";
+import { Box, Chip, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { assets } from "./assets";
+
+const affiliations = [
+	{
+		name: "Aero Club of India",
+		image: assets.affiliation1,
+		description: "Government-authorized aviation sports regulator",
+	},
+	{
+		name: "ATOI",
+		image: assets.affiliation2,
+		description: "Adventure Tour Operators Association",
+	},
+	{
+		name: "PAI",
+		image: assets.affiliation3,
+		description: "Paragliding Association of India",
+	},
+	{
+		name: "Award",
+		image: assets.affiliation4,
+		description: "Winners of “Excellence in Adventure tourism” award by ATOAI",
+	},
+];
 
 export default function AffiliatedSection() {
 	return (
@@ -8,113 +32,134 @@ export default function AffiliatedSection() {
 			component="section"
 			id="affiliations"
 			sx={{
-				bgcolor: "#3D3D3F",
-				px: { xs: 2, md: 9 },
-				py: { xs: 6, md: 9 },
-				color: "#FFFFFF",
-				textAlign: "center",
+				position: "relative",
+				background: "linear-gradient(180deg, #1c1c1c 0%, #3d3d3f 100%)",
+				px: { xs: 2, md: 4 },
+				py: { xs: 8, md: 12 },
+				overflow: "hidden",
 			}}
 		>
-			<Stack spacing={4} alignItems="center">
-				<Stack spacing={2} alignItems="center">
-					<Typography variant="h2">Trusted &amp; Affiliated By</Typography>
+			{/* Decorative background */}
+			<Box
+				sx={{
+					position: "absolute",
+					top: "50%",
+					left: "50%",
+					transform: "translate(-50%, -50%)",
+					width: "150%",
+					height: "100%",
+					background:
+						"radial-gradient(ellipse at center, rgba(13, 92, 143, 0.15) 0%, transparent 50%)",
+					pointerEvents: "none",
+				}}
+			/>
+
+			<Stack
+				spacing={6}
+				alignItems="center"
+				sx={{ maxWidth: 1200, mx: "auto", position: "relative", zIndex: 1 }}
+			>
+				<Stack spacing={3} alignItems="center" textAlign="center">
+					<Chip
+						icon={<VerifiedIcon sx={{ fontSize: 16 }} />}
+						label="Officially Recognized"
+						sx={{
+							bgcolor: "#152b42",
+							color: "#b9ddff",
+							fontWeight: 600,
+							fontSize: 13,
+							height: 32,
+							"& .MuiChip-icon": {
+								color: "#b9ddff",
+							},
+						}}
+					/>
+					<Typography
+						variant="h2"
+						sx={{
+							color: "#FFFFFF",
+							textAlign: "center",
+						}}
+					>
+						Trusted & Accredited
+					</Typography>
 					<Typography
 						sx={{
-							color: "#F2F2F2",
-							maxWidth: 520,
-							"& strong": { color: "#FFFFFF", fontWeight: 600 },
+							color: "rgba(255,255,255,0.7)",
+							maxWidth: 600,
+							fontSize: { xs: 16, md: 18 },
+							lineHeight: 1.7,
 						}}
 					>
-						Indian <strong>First</strong> and currently{" "}
-						<strong>only paragliding school</strong> to be accredited by:{" "}
-						<strong>
-							Aero Club of India, a body empowered by DGCA to regulate aviation
-							sports.
-						</strong>
+						India&apos;s{" "}
+						<strong style={{ color: "#FFFFFF" }}>first and only</strong>{" "}
+						paragliding school accredited by the{" "}
+						<strong style={{ color: "#b9ddff" }}>Aero Club of India</strong>,
+						empowered by DGCA to regulate aviation sports.
 					</Typography>
 				</Stack>
-				<Stack spacing={2} alignItems="center">
-					<Box
-						sx={{
-							bgcolor: "#FFFFFF",
-							borderRadius: 1,
-							px: 2,
-							py: 1.5,
-							width: { xs: "100%", sm: 520 },
-						}}
-					>
+
+				<Stack
+					direction={{ xs: "column", md: "row" }}
+					spacing={3}
+					sx={{ width: "100%" }}
+					justifyContent="center"
+				>
+					{affiliations.map((affiliation) => (
 						<Box
-							component="img"
-							src={assets.affiliation1.src}
-							alt="Aero Club of India"
-							sx={{ width: "100%", height: 70, objectFit: "contain" }}
-						/>
-					</Box>
-					<div className="flex flex-col gap-4 w-full sm:grid sm:grid-cols-2">
-						<div className="bg-white px-4 py-3 w-full rounded-lg flex items-center justify-center h-25">
-							<Image
-								src={assets.affiliation2.src}
-								alt="Adventure Tour Operators Association of India"
-								width={240}
-								height={76}
-								className="h-full w-fit"
-								objectFit="contain"
-							/>
-						</div>
-						<div className="bg-white px-4 py-3 w-full rounded-lg flex items-center justify-center h-25">
-							<Image
-								src={assets.affiliation3.src}
-								alt="PAI Affiliated School"
-								width={240}
-								height={76}
-								className="h-full w-fit"
-								objectFit="contain"
-							/>
-						</div>
-					</div>
-					{/* <Stack
-						direction={{ xs: "column", sm: "row" }}
-						sx={{
-							display: { xs: "flex", sm: "grid" },
-							gridTemplateColumns: { sm: "1fr 1fr" },
-							width: "100%",
-							gap: 2,
-						}}
-						spacing={2}
-					>
-						<Box
+							key={affiliation.name}
 							sx={{
-								bgcolor: "#FFFFFF",
-								borderRadius: 1,
-								px: 2,
-								py: 1.5,
-								width: "100%",
+								flex: { md: "1 1 0" },
+								maxWidth: { md: 320 },
+								bgcolor: "rgba(255,255,255,0.03)",
+								border: "1px solid rgba(255,255,255,0.1)",
+								borderRadius: 3,
+								p: 3,
+								transition: "all 0.3s ease",
+								"&:hover": {
+									bgcolor: "rgba(255,255,255,0.05)",
+									borderColor: "rgba(255,255,255,0.2)",
+									transform: "translateY(-4px)",
+								},
 							}}
 						>
-							<Box
-								component="img"
-								src={assets.affiliation2.src}
-								alt="Adventure Tour Operators Association of India"
-								sx={{ width: "100%", height: 70, objectFit: "contain" }}
-							/>
+							<Stack spacing={2} alignItems="center" textAlign="center">
+								<Box
+									sx={{
+										bgcolor: "#FFFFFF",
+										borderRadius: 2,
+										p: affiliation.name === "Award" ? 0 : 2,
+										width: "100%",
+										display: "flex",
+										justifyContent: "center",
+										alignItems: "center",
+										height: 100,
+									}}
+								>
+									<Image
+										src={affiliation.image.src}
+										alt={affiliation.name}
+										width={200}
+										height={70}
+										style={{
+											objectFit:
+												affiliation.name === "Award" ? "contain" : "contain",
+											maxHeight: "100%",
+											width: affiliation.name === "Award" ? "100%" : "auto",
+										}}
+									/>
+								</Box>
+								<Typography
+									sx={{
+										color: "rgba(255,255,255,0.6)",
+										fontSize: 14,
+									}}
+								>
+									{affiliation.description}
+								</Typography>
+							</Stack>
 						</Box>
-						<Box
-							sx={{
-								bgcolor: "#FFFFFF",
-								borderRadius: 1,
-								px: 2,
-								py: 1.5,
-								width: "100%",
-							}}
-						>
-							<Box
-								component="img"
-								src={assets.affiliation3.src}
-								alt="PAI Affiliated School"
-								sx={{ width: "100%", height: 70, objectFit: "contain" }}
-							/>
-						</Box>
-					</Stack> */}
+					))}
 				</Stack>
 			</Stack>
 		</Box>

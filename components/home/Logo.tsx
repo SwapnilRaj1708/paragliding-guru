@@ -7,16 +7,16 @@ type LogoProps = {
 
 const sizes = {
 	sm: {
-		image: 40,
-		title: 18,
-		subtitle: 8,
-		spacing: 1,
+		image: 44,
+		title: 20,
+		subtitle: 9,
+		spacing: 1.5,
 	},
 	lg: {
-		image: 74,
-		title: 36,
-		subtitle: 13,
-		spacing: 1.5,
+		image: 60,
+		title: 28,
+		subtitle: 11,
+		spacing: 2,
 	},
 };
 
@@ -26,39 +26,52 @@ export default function Logo({ size = "sm" }: LogoProps) {
 	return (
 		<Stack direction="row" spacing={config.spacing} alignItems="center">
 			<Box
-				component="img"
-				src={assets.logo.src}
-				alt="PG Gurukul logo"
 				sx={{
 					width: config.image,
 					height: config.image,
-					borderRadius: 1,
-					objectFit: "cover",
+					borderRadius: 2,
+					overflow: "hidden",
+					boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+					border: "2px solid rgba(255,255,255,0.1)",
+					flexShrink: 0,
 				}}
-			/>
+			>
+				<Box
+					component="img"
+					src={assets.logo.src}
+					alt="PG Gurukul"
+					sx={{
+						width: "100%",
+						height: "100%",
+						objectFit: "cover",
+					}}
+				/>
+			</Box>
 			<Box>
 				<Typography
 					sx={{
-						fontFamily: "var(--font-poppins), Arial, sans-serif",
-						fontWeight: 600,
+						fontFamily: "var(--font-outfit), system-ui, sans-serif",
+						fontWeight: 700,
 						fontSize: config.title,
 						lineHeight: 1.1,
 						color: "inherit",
+						letterSpacing: "-0.02em",
 					}}
 				>
 					PG Gurukul
 				</Typography>
 				<Typography
 					sx={{
-						fontFamily: "var(--font-inter), Arial, sans-serif",
+						fontFamily: "var(--font-dm-sans), system-ui, sans-serif",
 						fontSize: config.subtitle,
-						letterSpacing: "0.08em",
+						letterSpacing: "0.12em",
 						textTransform: "uppercase",
 						color: "inherit",
-						opacity: 0.9,
+						opacity: 0.7,
+						fontWeight: 500,
 					}}
 				>
-					Himalayan Paragliding School
+					Himalayan Paragliding
 				</Typography>
 			</Box>
 		</Stack>

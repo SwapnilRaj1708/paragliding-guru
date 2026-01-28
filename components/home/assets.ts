@@ -1,6 +1,7 @@
 import affiliation1 from "@/public/affiliation-1.png";
 import affiliation2 from "@/public/affiliation-2.png";
 import affiliation3 from "@/public/affiliation-3.png";
+import affiliation4 from "@/public/affiliation-4.png";
 import bgImage from "@/public/bg-image.png";
 import coursesCard from "@/public/courses-card.png";
 import gallery1 from "@/public/gallery-1.png";
@@ -21,6 +22,7 @@ export const assets = {
 	affiliation1: affiliation1,
 	affiliation2: affiliation2,
 	affiliation3: affiliation3,
+	affiliation4: affiliation4,
 	bgImage: bgImage,
 	coursesCard: coursesCard,
 	gallery1: gallery1,
