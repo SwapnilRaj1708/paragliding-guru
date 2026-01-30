@@ -35,20 +35,6 @@ export default function HeroSection() {
 						objectPosition: "center",
 					}}
 				/>
-				{/* Gradient Overlay */}
-				<Box
-					sx={{
-						position: "absolute",
-						inset: 0,
-						background: `
-							linear-gradient(
-								180deg,
-								rgba(15, 23, 42, 0.85) 0%,
-								rgba(15, 23, 42, 0.9) 100%
-							)
-						`,
-					}}
-				/>
 				{/* Decorative Elements */}
 				<Box
 					sx={{
@@ -107,24 +93,26 @@ export default function HeroSection() {
 					}}
 					className="animate-fade-in-up"
 				>
-					<Stack direction="row" spacing={1} alignItems="center">
-						<Chip
-							icon={<FlightTakeoffIcon sx={{ fontSize: 16 }} />}
-							label={heroContent.badge}
-							sx={{
-								bgcolor: "rgba(255,255,255,0.15)",
-								backdropFilter: "blur(10px)",
-								color: "#FFFFFF",
-								fontWeight: 500,
-								fontSize: 13,
-								height: 36,
-								px: 1,
-								"& .MuiChip-icon": {
-									color: "#1361AF",
-								},
-							}}
-						/>
-					</Stack>
+					{heroContent.displayBadge && (
+						<Stack direction="row" spacing={1} alignItems="center">
+							<Chip
+								icon={<FlightTakeoffIcon sx={{ fontSize: 16 }} />}
+								label={heroContent.badge}
+								sx={{
+									bgcolor: "rgba(255,255,255,0.15)",
+									backdropFilter: "blur(10px)",
+									color: "#FFFFFF",
+									fontWeight: 500,
+									fontSize: 13,
+									height: 36,
+									px: 1,
+									"& .MuiChip-icon": {
+										color: "#1361AF",
+									},
+								}}
+							/>
+						</Stack>
+					)}
 
 					<Typography
 						variant="h1"

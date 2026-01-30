@@ -8,24 +8,24 @@ media:
 content:
   # Site-wide settings
   - name: site
-    label: Site Settings
+    label: Website Settings
     path: content/site.json
     type: file
     fields:
       - name: siteName
-        label: Site Name
+        label: Website Name
         type: string
       - name: tagline
         label: Tagline
         type: string
       - name: description
-        label: Site Description
+        label: Website Description
         type: text
       - name: phone
-        label: Phone Number
+        label: Contact Number
         type: string
       - name: email
-        label: Email Address
+        label: Contact Email Address
         type: string
       - name: location
         label: Location
@@ -40,6 +40,9 @@ content:
     path: content/hero.json
     type: file
     fields:
+      - name: displayBadge
+        label: Display Badge 
+        type: boolean
       - name: badge
         label: Badge Text
         type: string
@@ -47,7 +50,7 @@ content:
         label: Title (Line 1)
         type: string
       - name: titleHighlight
-        label: Title Highlight (Line 2)
+        label: Title (Line 2) (with color gradient)
         type: string
       - name: description
         label: Description
@@ -58,6 +61,7 @@ content:
       - name: primaryButtonLink
         label: Primary Button Link
         type: string
+        description:  (Provide the string present after domain name, for example, if URL is "www.example.com/courses/paragliding" then provide "courses/paragliding")
       - name: stats
         label: Statistics
         type: object
