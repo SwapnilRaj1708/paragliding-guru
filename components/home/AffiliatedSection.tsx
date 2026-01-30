@@ -1,30 +1,7 @@
 import VerifiedIcon from "@mui/icons-material/Verified";
 import { Box, Chip, Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import { assets } from "./assets";
-
-const affiliations = [
-	{
-		name: "Aero Club of India",
-		image: assets.affiliation1,
-		description: "Government-authorized aviation sports regulator",
-	},
-	{
-		name: "ATOI",
-		image: assets.affiliation2,
-		description: "Adventure Tour Operators Association",
-	},
-	{
-		name: "PAI",
-		image: assets.affiliation3,
-		description: "Paragliding Association of India",
-	},
-	{
-		name: "Award",
-		image: assets.affiliation4,
-		description: "Winners of “Excellence in Adventure tourism” award by ATOAI",
-	},
-];
+import affiliationsContent from "@/content/affiliations.json";
 
 export default function AffiliatedSection() {
 	return (
@@ -62,7 +39,7 @@ export default function AffiliatedSection() {
 				<Stack spacing={3} alignItems="center" textAlign="center">
 					<Chip
 						icon={<VerifiedIcon sx={{ fontSize: 16 }} />}
-						label="Officially Recognized"
+						label={affiliationsContent.badge}
 						sx={{
 							bgcolor: "#152b42",
 							color: "#b9ddff",
@@ -81,7 +58,7 @@ export default function AffiliatedSection() {
 							textAlign: "center",
 						}}
 					>
-						Trusted & Accredited
+						{affiliationsContent.title}
 					</Typography>
 					<Typography
 						sx={{
@@ -89,14 +66,12 @@ export default function AffiliatedSection() {
 							maxWidth: 600,
 							fontSize: { xs: 16, md: 18 },
 							lineHeight: 1.7,
+							"& strong": {
+								color: "#FFFFFF",
+							},
 						}}
-					>
-						India&apos;s{" "}
-						<strong style={{ color: "#FFFFFF" }}>first and only</strong>{" "}
-						paragliding school accredited by the{" "}
-						<strong style={{ color: "#b9ddff" }}>Aero Club of India</strong>,
-						empowered by DGCA to regulate aviation sports.
-					</Typography>
+						dangerouslySetInnerHTML={{ __html: affiliationsContent.description }}
+					/>
 				</Stack>
 
 				<Stack
@@ -105,7 +80,7 @@ export default function AffiliatedSection() {
 					sx={{ width: "100%" }}
 					justifyContent="center"
 				>
-					{affiliations.map((affiliation) => (
+					{affiliationsContent.items.map((affiliation) => (
 						<Box
 							key={affiliation.name}
 							sx={{
@@ -137,7 +112,7 @@ export default function AffiliatedSection() {
 									}}
 								>
 									<Image
-										src={affiliation.image.src}
+										src={affiliation.image}
 										alt={affiliation.name}
 										width={200}
 										height={70}

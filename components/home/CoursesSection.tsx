@@ -1,10 +1,9 @@
-// "use client";;
-
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Box, Button, Chip, Grid, Stack, Typography } from "@mui/material";
 import { assets } from "./assets";
+import coursesContent from "@/content/courses.json";
 
 type Course = {
 	title: string;
@@ -16,71 +15,6 @@ type Course = {
 	tag: string;
 	featured?: boolean;
 };
-
-const courses: Course[] = [
-	{
-		title: "P1+P2 Foundation",
-		description:
-			"Perfect for beginners. Learn ground handling, launch techniques, and your first solo flights in a safe environment.",
-		duration: "14 Days",
-		venue: "Bir & Narvana",
-		cost: "₹50,000",
-		level: "Beginner",
-		tag: "Most Popular",
-		featured: true,
-	},
-	{
-		title: "P3 Thermal Skills",
-		description:
-			"Master thermal flying and cross-country basics. Build confidence with advanced maneuvers and weather reading.",
-		duration: "10 Days",
-		venue: "Bir Valley",
-		cost: "₹45,000",
-		level: "Intermediate",
-		tag: "Skill Builder",
-	},
-	{
-		title: "Integrated Pro",
-		description:
-			"Comprehensive P1 to thermal soaring. The complete journey from zero to confident pilot in one program.",
-		duration: "21 Days",
-		venue: "Bir & Narvana",
-		cost: "₹85,000",
-		level: "Beginner",
-		tag: "Best Value",
-		featured: true,
-	},
-	{
-		title: "SIV Safety Training",
-		description:
-			"Advanced safety maneuvers over water. Learn to handle collapses, spins, and emergency situations.",
-		duration: "5 Days",
-		venue: "Lake Location",
-		cost: "₹60,000",
-		level: "Advanced",
-		tag: "Safety Focus",
-	},
-	{
-		title: "Paramotor Course",
-		description:
-			"Add powered flight to your skills. Learn motor launch, handling, and navigation techniques.",
-		duration: "12 Days",
-		venue: "Dedicated Site",
-		cost: "₹75,000",
-		level: "Intermediate",
-		tag: "Powered Flight",
-	},
-	{
-		title: "XC Cross-Country",
-		description:
-			"Long-distance flying mastery. Route planning, airspace navigation, and competition preparation.",
-		duration: "7 Days",
-		venue: "Bir Valley",
-		cost: "₹55,000",
-		level: "Advanced",
-		tag: "Adventure",
-	},
-];
 
 const levelColors = {
 	Beginner: { bg: "#ceeedc", color: "#0a5b2f" },
@@ -181,17 +115,6 @@ function CourseCard({ course }: { course: Course }) {
 							backdropFilter: "blur(8px)",
 						}}
 					/>
-					{/* <Chip
-						label={course.tag}
-						size="small"
-						sx={{
-							bgcolor: "rgba(255,255,255,0.2)",
-							color: "#FFFFFF",
-							fontWeight: 500,
-							fontSize: 11,
-							backdropFilter: "blur(8px)",
-						}}
-					/> */}
 				</Box>
 			</Box>
 
@@ -263,19 +186,6 @@ function CourseCard({ course }: { course: Course }) {
 							variant="contained"
 							endIcon={<ArrowForwardIcon />}
 							href="#contact"
-							sx={
-								{
-									// background: course.featured
-									// 	? "linear-gradient(135deg, #E85D04 0%, #FF7B29 100%)"
-									// 	: "linear-gradient(135deg, #0D5C8F 0%, #1A8FD1 100%)",
-									// boxShadow: course.featured
-									// 	? "0 4px 15px rgba(232, 93, 4, 0.3)"
-									// 	: "0 4px 15px rgba(13, 92, 143, 0.3)",
-									// "&:hover": {
-									// 	transform: "translateX(4px)",
-									// },
-								}
-							}
 						>
 							View Details
 						</Button>
@@ -324,7 +234,7 @@ export default function CoursesSection() {
 				>
 					<Box>
 						<Chip
-							label="Our Courses"
+							label={coursesContent.badge}
 							sx={{
 								bgcolor: "rgba(13, 92, 143, 0.1)",
 								color: "#0D5C8F",
@@ -334,11 +244,10 @@ export default function CoursesSection() {
 							}}
 						/>
 						<Typography variant="h2" sx={{ color: "#1A1D21", mb: 1 }}>
-							Find Your Perfect Course
+							{coursesContent.title}
 						</Typography>
 						<Typography sx={{ color: "#5A6370", maxWidth: 500 }}>
-							From first flight to cross-country adventures, we have a program
-							tailored for your goals.
+							{coursesContent.description}
 						</Typography>
 					</Box>
 					<Button
@@ -358,9 +267,9 @@ export default function CoursesSection() {
 				</Stack>
 
 				<Grid container spacing={3}>
-					{courses.map((course) => (
+					{coursesContent.items.map((course) => (
 						<Grid size={{ xs: 12, sm: 6, lg: 4 }} key={course.title}>
-							<CourseCard course={course} />
+							<CourseCard course={course as Course} />
 						</Grid>
 					))}
 				</Grid>

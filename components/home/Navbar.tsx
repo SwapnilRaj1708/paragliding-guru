@@ -17,13 +17,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
-
-const navItems = [
-	{ label: "Courses", withCaret: true, href: "#courses" },
-	{ label: "Gallery", withCaret: false, href: "#gallery" },
-	{ label: "About", withCaret: false, href: "#about" },
-	{ label: "FAQs", withCaret: false, href: "#faqs" },
-];
+import navigationContent from "@/content/navigation.json";
 
 export default function Navbar() {
 	const [mobileOpen, setMobileOpen] = useState(false);
@@ -56,7 +50,6 @@ export default function Navbar() {
 				zIndex: 1100,
 				transition: "all 0.3s ease",
 				bgcolor: "#3d3d3fc2",
-				// bgcolor: scrolled ? "rgba(15, 23, 42, 0.95)" : "rgba(15, 23, 42, 0.7)",
 				backdropFilter: "blur(20px)",
 				borderBottom: scrolled
 					? "1px solid rgba(255,255,255,0.1)"
@@ -84,7 +77,7 @@ export default function Navbar() {
 					alignItems="center"
 					sx={{ display: { xs: "none", md: "flex" } }}
 				>
-					{navItems.map((item) => (
+					{navigationContent.items.map((item) => (
 						<Button
 							key={item.label}
 							variant="text"
@@ -112,24 +105,16 @@ export default function Navbar() {
 					))}
 					<Button
 						variant="contained"
-						href="#contact"
+						href={navigationContent.ctaLink}
 						sx={{
 							ml: 2,
 							px: 3,
 							py: 1,
 							fontSize: 14,
 							fontWeight: 600,
-							// background: "linear-gradient(135deg, #E85D04 0%, #FF7B29 100%)",
-							// border: "none",
-							// boxShadow: "0 4px 15px rgba(232, 93, 4, 0.4)",
-							// "&:hover": {
-							// 	background: "linear-gradient(135deg, #FF7B29 0%, #E85D04 100%)",
-							// 	boxShadow: "0 6px 20px rgba(232, 93, 4, 0.5)",
-							// 	transform: "translateY(-1px)",
-							// },
 						}}
 					>
-						Apply Now
+						{navigationContent.ctaText}
 					</Button>
 				</Stack>
 				<IconButton
@@ -157,7 +142,6 @@ export default function Navbar() {
 				PaperProps={{
 					sx: {
 						width: { xs: "85%", sm: 340 },
-						// background: "linear-gradient(180deg, #0F172A 0%, #1E293B 100%)",
 						bgcolor: "#3d3d3ffc",
 						color: "#FFFFFF",
 					},
@@ -189,7 +173,7 @@ export default function Navbar() {
 				</Box>
 				<Divider sx={{ borderColor: "rgba(255,255,255,0.1)" }} />
 				<List sx={{ px: 2, py: 2 }}>
-					{navItems.map((item) => (
+					{navigationContent.items.map((item) => (
 						<ListItem key={item.label} disablePadding sx={{ mb: 0.5 }}>
 							<ListItemButton
 								component="a"
@@ -228,21 +212,16 @@ export default function Navbar() {
 				<Box sx={{ px: 3, pb: 3 }}>
 					<Button
 						variant="contained"
-						href="#contact"
+						href={navigationContent.ctaLink}
 						fullWidth
 						onClick={handleClose}
 						sx={{
 							py: 1.5,
 							fontSize: 15,
 							fontWeight: 600,
-							// background: "linear-gradient(135deg, #E85D04 0%, #FF7B29 100%)",
-							// boxShadow: "0 4px 15px rgba(232, 93, 4, 0.4)",
-							// "&:hover": {
-							// 	background: "linear-gradient(135deg, #FF7B29 0%, #E85D04 100%)",
-							// },
 						}}
 					>
-						Apply Now
+						{navigationContent.ctaText}
 					</Button>
 				</Box>
 			</Drawer>

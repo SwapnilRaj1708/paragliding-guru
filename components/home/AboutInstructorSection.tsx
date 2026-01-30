@@ -3,30 +3,14 @@ import FlightIcon from "@mui/icons-material/Flight";
 import PublicIcon from "@mui/icons-material/Public";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import { Box, Button, Chip, Grid, Stack, Typography } from "@mui/material";
-import { assets } from "./assets";
+import instructorContent from "@/content/instructor.json";
 
-const achievements = [
-	{
-		icon: FlightIcon,
-		value: "30+",
-		label: "Years Flying",
-	},
-	{
-		icon: EmojiEventsIcon,
-		value: "50+",
-		label: "Competitions",
-	},
-	{
-		icon: PublicIcon,
-		value: "10+",
-		label: "Countries",
-	},
-	{
-		icon: VerifiedUserIcon,
-		value: "BHPA",
-		label: "Certified",
-	},
-];
+const iconMap: Record<string, React.ElementType> = {
+	FlightIcon,
+	EmojiEventsIcon,
+	PublicIcon,
+	VerifiedUserIcon,
+};
 
 export default function AboutInstructorSection() {
 	return (
@@ -58,8 +42,8 @@ export default function AboutInstructorSection() {
 							>
 								<Box
 									component="img"
-									src={assets.instructorPhoto.src}
-									alt="Gurpreet - Lead Instructor"
+									src={instructorContent.photo}
+									alt={`${instructorContent.name} - ${instructorContent.title}`}
 									sx={{
 										width: "100%",
 										height: { xs: 400, md: 500 },
@@ -95,7 +79,7 @@ export default function AboutInstructorSection() {
 											fontFamily: "var(--font-outfit)",
 										}}
 									>
-										Gurpreet Singh
+										{instructorContent.name}
 									</Typography>
 									<Typography
 										sx={{
@@ -103,23 +87,13 @@ export default function AboutInstructorSection() {
 											fontSize: 14,
 										}}
 									>
-										Lead Instructor & Founder
+										{instructorContent.title}
 									</Typography>
 								</Box>
 							</Box>
 
 							{/* Floating Achievement Cards */}
 							<Box
-								// sx={{
-								// 	position: { xs: "relative", md: "absolute" },
-								// 	top: { md: 40 },
-								// 	right: { md: -60 },
-								// 	mt: { xs: 2, md: 0 },
-								// 	display: "grid",
-								// 	gridTemplateColumns: "repeat(2, 1fr)",
-								// 	gap: 1.5,
-								// 	maxWidth: { xs: "100%", md: 200 },
-								// }}
 								sx={{
 									position: { xs: "relative" },
 									mt: { xs: 2, md: 0 },
@@ -133,8 +107,8 @@ export default function AboutInstructorSection() {
 									maxWidth: { xs: "100%" },
 								}}
 							>
-								{achievements.map((achievement) => {
-									const Icon = achievement.icon;
+								{instructorContent.achievements.map((achievement) => {
+									const Icon = iconMap[achievement.icon] || FlightIcon;
 									return (
 										<Box
 											key={achievement.label}
@@ -195,67 +169,24 @@ export default function AboutInstructorSection() {
 										mb: 2,
 									}}
 								>
-									Learn from One of India&apos;s Best
+									{instructorContent.sectionTitle}
 								</Typography>
 							</Box>
 
-							<Typography
-								sx={{
-									color: "#5A6370",
-									fontSize: 16,
-									lineHeight: 1.8,
-								}}
-							>
-								Gurpreet is{" "}
-								<strong style={{ color: "#0D5C8F" }}>
-									one of India&apos;s most accomplished
-								</strong>{" "}
-								paragliding competition pilots, with over three decades of
-								flying experience since 1993.
-							</Typography>
-
-							<Typography
-								sx={{
-									color: "#5A6370",
-									fontSize: 16,
-									lineHeight: 1.8,
-								}}
-							>
-								As a{" "}
-								<strong style={{ color: "#0D5C8F" }}>
-									BHPA-certified paragliding instructor
-								</strong>
-								,{" "}
-								<strong style={{ color: "#0D5C8F" }}>Flying since 1993</strong>{" "}
-								and competing{" "}
-								<strong style={{ color: "#0D5C8F" }}>
-									internationally since 2002
-								</strong>
-								. likely the only one in India certified by a globally
-								accredited body.
-								{/* As a{" "}
-								<strong style={{ color: "#0D5C8F" }}>
-									BHPA-certified instructor
-								</strong>{" "}
-								— likely the only one in India certified by a globally
-								accredited body — he brings unmatched expertise and a passion
-								for safe, professional training. */}
-							</Typography>
-
-							<Typography
-								sx={{
-									color: "#5A6370",
-									fontSize: 16,
-									lineHeight: 1.8,
-								}}
-							>
-								With multiple podium finishes in India and Europe, his
-								competition experience translates into{" "}
-								<strong style={{ color: "#0D5C8F" }}>
-									real-world skills and techniques
-								</strong>{" "}
-								that he passes on to every student.
-							</Typography>
+							{instructorContent.paragraphs.map((paragraph, index) => (
+								<Typography
+									key={index}
+									sx={{
+										color: "#5A6370",
+										fontSize: 16,
+										lineHeight: 1.8,
+										"& strong": {
+											color: "#0D5C8F",
+										},
+									}}
+									dangerouslySetInnerHTML={{ __html: paragraph }}
+								/>
+							))}
 
 							<Button
 								variant="contained"
@@ -265,17 +196,9 @@ export default function AboutInstructorSection() {
 									mt: 2,
 									px: 4,
 									py: 1.5,
-									// background:
-									// 	"linear-gradient(135deg, #0D5C8F 0%, #1A8FD1 100%)",
-									// boxShadow: "0 8px 25px rgba(13, 92, 143, 0.3)",
-									// "&:hover": {
-									// 	background:
-									// 		"linear-gradient(135deg, #1A8FD1 0%, #0D5C8F 100%)",
-									// 	boxShadow: "0 12px 35px rgba(13, 92, 143, 0.4)",
-									// },
 								}}
 							>
-								Train with Gurpreet
+								{instructorContent.buttonText}
 							</Button>
 						</Stack>
 					</Grid>

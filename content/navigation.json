@@ -1,0 +1,10 @@
+{
+  "items": [
+    { "label": "Courses", "href": "#courses", "withCaret": true },
+    { "label": "Gallery", "href": "#gallery", "withCaret": false },
+    { "label": "About", "href": "#about", "withCaret": false },
+    { "label": "FAQs", "href": "#faqs", "withCaret": false }
+  ],
+  "ctaText": "Apply Now",
+  "ctaLink": "#contact"
+}

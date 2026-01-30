@@ -3,45 +3,20 @@ import SchoolIcon from "@mui/icons-material/School";
 import SecurityIcon from "@mui/icons-material/Security";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { Box, Chip, Grid, Stack, Typography } from "@mui/material";
+import whyChooseUsContent from "@/content/why-choose-us.json";
 
-const reasons = [
-	{
-		title: "Expert Instruction",
-		description:
-			"Learn from a BHPA-certified instructor with 30+ years of experience. Get real-world skills from a top competition pilot.",
-		icon: SchoolIcon,
-		iconColor: "#0D5C8F",
-		color: "#acc5e7",
-		bgColor: "rgba(13, 92, 143, 0.1)",
-	},
-	{
-		title: "All Skill Levels",
-		description:
-			"Structured programs from beginner to advanced. Progress at your pace with personalized attention and flexible scheduling.",
-		icon: TrendingUpIcon,
-		iconColor: "#0D5C8F",
-		color: "#acc5e7",
-		bgColor: "rgba(13, 92, 143, 0.1)",
-	},
-	{
-		title: "Official Licensing",
-		description:
-			"The only school in India authorized to issue government-recognized paragliding licenses. Fly legally anywhere.",
-		icon: CardMembershipIcon,
-		iconColor: "#0D5C8F",
-		color: "#acc5e7",
-		bgColor: "rgba(13, 92, 143, 0.1)",
-	},
-	{
-		title: "Safety First",
-		description:
-			"Affiliated with ATOI, ACI & PAI. We follow strict national safety standards with modern equipment and proven protocols.",
-		icon: SecurityIcon,
-		iconColor: "#0D5C8F",
-		color: "#acc5e7",
-		bgColor: "rgba(13, 92, 143, 0.1)",
-	},
-];
+const iconMap: Record<string, React.ElementType> = {
+	SchoolIcon,
+	TrendingUpIcon,
+	CardMembershipIcon,
+	SecurityIcon,
+};
+
+const colorConfig = {
+	iconColor: "#0D5C8F",
+	color: "#acc5e7",
+	bgColor: "rgba(13, 92, 143, 0.1)",
+};
 
 export default function WhyChooseUsSection() {
 	return (
@@ -77,7 +52,7 @@ export default function WhyChooseUsSection() {
 			>
 				<Stack spacing={3} alignItems="center" textAlign="center">
 					<Chip
-						label="Why PG Gurukul"
+						label={whyChooseUsContent.badge}
 						sx={{
 							bgcolor: "rgba(13, 92, 143, 0.1)",
 							color: "#0D5C8F",
@@ -86,7 +61,7 @@ export default function WhyChooseUsSection() {
 						}}
 					/>
 					<Typography variant="h2" sx={{ color: "#1A1D21" }}>
-						Why Train With Us
+						{whyChooseUsContent.title}
 					</Typography>
 					<Typography
 						sx={{
@@ -95,14 +70,13 @@ export default function WhyChooseUsSection() {
 							fontSize: { xs: 16, md: 18 },
 						}}
 					>
-						Experience the difference of learning from India&apos;s most trusted
-						paragliding school with world-class instruction.
+						{whyChooseUsContent.description}
 					</Typography>
 				</Stack>
 
 				<Grid container spacing={3}>
-					{reasons.map((reason, index) => {
-						const Icon = reason.icon;
+					{whyChooseUsContent.reasons.map((reason) => {
+						const Icon = iconMap[reason.icon] || SchoolIcon;
 						return (
 							<Grid size={{ xs: 12, sm: 6, lg: 3 }} key={reason.title}>
 								<Box
@@ -114,8 +88,8 @@ export default function WhyChooseUsSection() {
 										border: "1px solid #E2E8F0",
 										transition: "all 0.3s ease",
 										"&:hover": {
-											borderColor: reason.color,
-											boxShadow: `0 20px 40px -15px ${reason.color}25`,
+											borderColor: colorConfig.color,
+											boxShadow: `0 20px 40px -15px ${colorConfig.color}25`,
 											transform: "translateY(-8px)",
 											"& .icon-box": {
 												transform: "scale(1.1)",
@@ -130,14 +104,14 @@ export default function WhyChooseUsSection() {
 												width: 64,
 												height: 64,
 												borderRadius: 2,
-												bgcolor: reason.bgColor,
+												bgcolor: colorConfig.bgColor,
 												display: "flex",
 												alignItems: "center",
 												justifyContent: "center",
 												transition: "transform 0.3s ease",
 											}}
 										>
-											<Icon sx={{ color: reason.iconColor, fontSize: 32 }} />
+											<Icon sx={{ color: colorConfig.iconColor, fontSize: 32 }} />
 										</Box>
 										<Box>
 											<Typography

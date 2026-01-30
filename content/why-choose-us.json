@@ -1,0 +1,27 @@
+{
+  "badge": "Why PG Gurukul",
+  "title": "Why Train With Us",
+  "description": "Experience the difference of learning from India's most trusted paragliding school with world-class instruction.",
+  "reasons": [
+    {
+      "title": "Expert Instruction",
+      "description": "Learn from a BHPA-certified instructor with 30+ years of experience. Get real-world skills from a top competition pilot.",
+      "icon": "SchoolIcon"
+    },
+    {
+      "title": "All Skill Levels",
+      "description": "Structured programs from beginner to advanced. Progress at your pace with personalized attention and flexible scheduling.",
+      "icon": "TrendingUpIcon"
+    },
+    {
+      "title": "Official Licensing",
+      "description": "The only school in India authorized to issue government-recognized paragliding licenses. Fly legally anywhere.",
+      "icon": "CardMembershipIcon"
+    },
+    {
+      "title": "Safety First",
+      "description": "Affiliated with ATOI, ACI & PAI. We follow strict national safety standards with modern equipment and proven protocols.",
+      "icon": "SecurityIcon"
+    }
+  ]
+}

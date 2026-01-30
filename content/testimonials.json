@@ -1,0 +1,35 @@
+{
+  "badge": "Student Stories",
+  "title": "What Our Graduates Say",
+  "description": "Join hundreds of pilots who started their journey with us and are now soaring the skies with confidence.",
+  "items": [
+    {
+      "name": "Shon Fulzele",
+      "role": "P3 Graduate",
+      "text": "Dream bigger. Do bigger. Training with Gurpreet taught me how to face my fears and stay calm under pressure. The experience transformed not just my flying skills, but my entire approach to challenges in life.",
+      "rating": 5,
+      "photo": "/testimonial-1.png"
+    },
+    {
+      "name": "Priya Sharma",
+      "role": "P2 Graduate",
+      "text": "The best decision I ever made was joining PG Gurukul. The systematic approach to learning, combined with world-class safety standards, made me confident in the sky within weeks.",
+      "rating": 5,
+      "photo": null
+    },
+    {
+      "name": "Rahul Mehta",
+      "role": "Integrated Course",
+      "text": "From zero experience to soaring with the eagles. The comprehensive training and personal attention made all the difference. Gurpreet's expertise is unmatched in India.",
+      "rating": 5,
+      "photo": "/testimonial-1.png"
+    },
+    {
+      "name": "Ananya Verma",
+      "role": "SIV Graduate",
+      "text": "The SIV course was intense but incredibly valuable. Learning emergency procedures gave me the confidence to push my limits safely. Truly professional instruction.",
+      "rating": 5,
+      "photo": null
+    }
+  ]
+}

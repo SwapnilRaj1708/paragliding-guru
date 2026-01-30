@@ -1,30 +1,14 @@
-// "use client";;
-
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import { Box, Chip, Stack, Typography } from "@mui/material";
-import { assets } from "./assets";
+import galleryContent from "@/content/gallery.json";
 
-const galleryImages = [
-	{ src: assets.gallery1, alt: "Soaring over mountain peaks", span: "large" },
-	{ src: assets.gallery2, alt: "Flying through clouds", span: "small" },
-	{ src: assets.gallery3, alt: "Pre-flight equipment check", span: "small" },
-	{ src: assets.gallery4, alt: "Thermal riding", span: "small" },
-	{ src: assets.gallery5, alt: "Panoramic valley view", span: "wide" },
-	{ src: assets.gallery6, alt: "Golden hour flight", span: "small" },
-	{ src: assets.gallery7, alt: "Training session", span: "small" },
-	{ src: assets.gallery8, alt: "Adventure flight", span: "small" },
-	{ src: assets.gallery10, alt: "Himalayan landscape", span: "wide" },
-	{ src: assets.gallery9, alt: "Valley crossing", span: "large" },
-];
-
-function GalleryImage({
-	src,
-	alt,
-}: {
-	src: { src: string };
+type GalleryImage = {
+	src: string;
 	alt: string;
 	span: string;
-}) {
+};
+
+function GalleryImage({ src, alt }: { src: string; alt: string }) {
 	return (
 		<Box
 			sx={{
@@ -46,7 +30,7 @@ function GalleryImage({
 		>
 			<Box
 				component="img"
-				src={src.src}
+				src={src}
 				alt={alt}
 				sx={{
 					width: "100%",
@@ -105,6 +89,8 @@ function GalleryImage({
 }
 
 export default function GallerySection() {
+	const images = galleryContent.images as GalleryImage[];
+
 	return (
 		<Box
 			component="section"
@@ -122,7 +108,7 @@ export default function GallerySection() {
 			>
 				<Stack spacing={3} alignItems="center" textAlign="center">
 					<Chip
-						label="Photo Gallery"
+						label={galleryContent.badge}
 						sx={{
 							bgcolor: "rgba(13, 92, 143, 0.1)",
 							color: "#0D5C8F",
@@ -131,7 +117,7 @@ export default function GallerySection() {
 						}}
 					/>
 					<Typography variant="h2" sx={{ color: "#1A1D21" }}>
-						Moments in the Sky
+						{galleryContent.title}
 					</Typography>
 					<Typography
 						sx={{
@@ -140,8 +126,7 @@ export default function GallerySection() {
 							fontSize: { xs: 16, md: 18 },
 						}}
 					>
-						Capturing the beauty and thrill of paragliding in the Himalayas.
-						These could be your memories.
+						{galleryContent.description}
 					</Typography>
 				</Stack>
 
@@ -168,27 +153,27 @@ export default function GallerySection() {
 							gridRow: { md: "1 / 3" },
 						}}
 					>
-						<GalleryImage {...galleryImages[0]} />
+						<GalleryImage {...images[0]} />
 					</Box>
 					<Box sx={{ gridColumn: { md: "3" }, gridRow: { md: "1" } }}>
-						<GalleryImage {...galleryImages[1]} />
+						<GalleryImage {...images[1]} />
 					</Box>
 					<Box sx={{ gridColumn: { md: "4" }, gridRow: { md: "1" } }}>
-						<GalleryImage {...galleryImages[2]} />
+						<GalleryImage {...images[2]} />
 					</Box>
 					<Box sx={{ gridColumn: { md: "3" }, gridRow: { md: "2" } }}>
-						<GalleryImage {...galleryImages[3]} />
+						<GalleryImage {...images[3]} />
 					</Box>
 					<Box sx={{ gridColumn: { md: "4" }, gridRow: { md: "2" } }}>
-						<GalleryImage {...galleryImages[5]} />
+						<GalleryImage {...images[5]} />
 					</Box>
 
 					{/* Row 3: 2 small + wide panoramic spanning 2 cols */}
 					<Box sx={{ gridColumn: { md: "1" }, gridRow: { md: "3" } }}>
-						<GalleryImage {...galleryImages[6]} />
+						<GalleryImage {...images[6]} />
 					</Box>
 					<Box sx={{ gridColumn: { md: "2" }, gridRow: { md: "3" } }}>
-						<GalleryImage {...galleryImages[7]} />
+						<GalleryImage {...images[7]} />
 					</Box>
 					<Box
 						sx={{
@@ -196,7 +181,7 @@ export default function GallerySection() {
 							gridRow: { md: "3" },
 						}}
 					>
-						<GalleryImage {...galleryImages[4]} />
+						<GalleryImage {...images[4]} />
 					</Box>
 
 					{/* Row 4: wide panoramic spanning 2 cols + large image spanning 2x1 */}
@@ -206,7 +191,7 @@ export default function GallerySection() {
 							gridRow: { md: "4" },
 						}}
 					>
-						<GalleryImage {...galleryImages[8]} />
+						<GalleryImage {...images[8]} />
 					</Box>
 					<Box
 						sx={{
@@ -214,7 +199,7 @@ export default function GallerySection() {
 							gridRow: { md: "4" },
 						}}
 					>
-						<GalleryImage {...galleryImages[9]} />
+						<GalleryImage {...images[9]} />
 					</Box>
 				</Box>
 			</Stack>

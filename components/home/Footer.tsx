@@ -2,28 +2,25 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import TwitterIcon from "@mui/icons-material/Twitter";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import Logo from "./Logo";
+import footerContent from "@/content/footer.json";
+import coursesContent from "@/content/courses.json";
+
+const socialIconMap: Record<string, React.ElementType> = {
+	Facebook: FacebookIcon,
+	Instagram: InstagramIcon,
+	YouTube: YouTubeIcon,
+	LinkedIn: LinkedInIcon,
+	Twitter: TwitterIcon,
+};
 
 const footerLinks = {
-	courses: [
-		"P1+P2 Foundation",
-		"P3 Thermal Skills",
-		"Integrated Pro",
-		"SIV Safety Training",
-		"Paramotor Course",
-		"XC Cross-Country",
-	],
+	courses: coursesContent.items.map((course) => course.title),
 	company: ["About Us", "Our Instructor", "Gallery", "Testimonials", "FAQs"],
 	support: ["Contact Us", "Location", "Booking Policy", "Safety Guidelines"],
 };
-
-const socialLinks = [
-	{ icon: FacebookIcon, label: "Facebook", href: "#" },
-	{ icon: InstagramIcon, label: "Instagram", href: "#" },
-	{ icon: YouTubeIcon, label: "YouTube", href: "#" },
-	{ icon: LinkedInIcon, label: "LinkedIn", href: "#" },
-];
 
 export default function Footer() {
 	const currentYear = new Date().getFullYear();
@@ -69,17 +66,16 @@ export default function Footer() {
 								lineHeight: 1.7,
 							}}
 						>
-							India's premier paragliding school offering certified training in
-							the stunning Himalayan landscapes since 1993.
+							{footerContent.description}
 						</Typography>
 						<Stack direction="row" spacing={1}>
-							{socialLinks.map((social) => {
-								const Icon = social.icon;
+							{footerContent.socialLinks.map((social) => {
+								const Icon = socialIconMap[social.platform] || FacebookIcon;
 								return (
 									<IconButton
-										key={social.label}
-										aria-label={social.label}
-										href={social.href}
+										key={social.platform}
+										aria-label={social.platform}
+										href={social.url}
 										sx={{
 											bgcolor: "rgba(255,255,255,0.05)",
 											color: "rgba(255,255,255,0.7)",
@@ -235,7 +231,7 @@ export default function Footer() {
 							fontSize: 14,
 						}}
 					>
-						© {currentYear} PG Gurukul. All rights reserved.
+						© {currentYear} {footerContent.copyrightText}
 					</Typography>
 					<Typography
 						sx={{

@@ -1,0 +1,13 @@
+{
+  "badge": "India's Premier Paragliding School",
+  "title": "Learn to Fly with",
+  "titleHighlight": "Certified Excellence",
+  "description": "Learn Paragliding at India's Best and Trusted Paragliding School, training with BHPA-certified instructors and structured programs for beginners and advanced pilots.",
+  "primaryButtonText": "Explore Courses",
+  "primaryButtonLink": "#courses",
+  "stats": [
+    { "value": "30+", "label": "Years Experience" },
+    { "value": "1000+", "label": "Students Trained" },
+    { "value": "100%", "label": "Safety Record" }
+  ]
+}

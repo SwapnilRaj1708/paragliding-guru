@@ -1,15 +1,7 @@
-// "use client";
-
 import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
-import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import { Box, Button, Chip, Stack, Typography } from "@mui/material";
+import heroContent from "@/content/hero.json";
 import { assets } from "./assets";
-
-const stats = [
-	{ value: "30+", label: "Years Experience" },
-	{ value: "1000+", label: "Students Trained" },
-	{ value: "100%", label: "Safety Record" },
-];
 
 export default function HeroSection() {
 	return (
@@ -52,7 +44,6 @@ export default function HeroSection() {
 							linear-gradient(
 								180deg,
 								rgba(15, 23, 42, 0.85) 0%,
-								// rgba(13, 92, 143, 0.6) 40%,
 								rgba(15, 23, 42, 0.9) 100%
 							)
 						`,
@@ -119,7 +110,7 @@ export default function HeroSection() {
 					<Stack direction="row" spacing={1} alignItems="center">
 						<Chip
 							icon={<FlightTakeoffIcon sx={{ fontSize: 16 }} />}
-							label="India's Premier Paragliding School"
+							label={heroContent.badge}
 							sx={{
 								bgcolor: "rgba(255,255,255,0.15)",
 								backdropFilter: "blur(10px)",
@@ -148,9 +139,9 @@ export default function HeroSection() {
 							},
 						}}
 					>
-						Learn to Fly with
+						{heroContent.title}
 						<br />
-						<span>Certified Excellence</span>
+						<span>{heroContent.titleHighlight}</span>
 					</Typography>
 
 					<Typography
@@ -161,15 +152,7 @@ export default function HeroSection() {
 							maxWidth: 560,
 						}}
 					>
-						Learn Paragliding at India’s Best and Trusted Paragliding School,
-						training with BHPA-certified instructors and structured programs for
-						beginners and advanced pilots.
-						{/* India’s Trusted Paragliding School for Safe & Certified Training.
-						<br />
-						Master the art of paragliding with BHPA-certified instruction in the
-						stunning Himalayan landscapes. From beginner to advanced, we guide
-						your journey through the skies.
-						Learn to fly safely from India’s Trusted Paragliding School, certified  with Aero Club of India & ATOI–affiliated paragliding courses designed for beginners to advanced pilots. */}
+						{heroContent.description}
 					</Typography>
 
 					<Stack
@@ -180,46 +163,16 @@ export default function HeroSection() {
 						<Button
 							variant="contained"
 							size="large"
-							href="#courses"
+							href={heroContent.primaryButtonLink}
 							sx={{
 								px: 4,
 								py: 1.5,
 								fontSize: 16,
 								fontWeight: 600,
-								// background: "linear-gradient(135deg, #E85D04 0%, #FF7B29 100%)",
-								// boxShadow: "0 8px 30px rgba(232, 93, 4, 0.4)",
-								// "&:hover": {
-								// 	background:
-								// 		"linear-gradient(135deg, #FF7B29 0%, #E85D04 100%)",
-								// 	boxShadow: "0 12px 40px rgba(232, 93, 4, 0.5)",
-								// 	transform: "translateY(-2px)",
-								// },
 							}}
 						>
-							Explore Courses
+							{heroContent.primaryButtonText}
 						</Button>
-						{/* <Button
-							variant="outlined"
-							size="large"
-							href="#gallery"
-							startIcon={<PlayArrowRoundedIcon />}
-							sx={{
-								px: 4,
-								py: 1.5,
-								fontSize: 16,
-								fontWeight: 600,
-								color: "#FFFFFF",
-								borderColor: "rgba(255,255,255,0.3)",
-								borderWidth: 2,
-								"&:hover": {
-									borderColor: "#FFFFFF",
-									borderWidth: 2,
-									bgcolor: "rgba(255,255,255,0.1)",
-								},
-							}}
-						>
-							Watch Gallery
-						</Button> */}
 					</Stack>
 				</Stack>
 			</Box>
@@ -258,7 +211,7 @@ export default function HeroSection() {
 							/>
 						}
 					>
-						{stats.map((stat) => (
+						{heroContent.stats.map((stat) => (
 							<Stack
 								key={stat.label}
 								alignItems="center"

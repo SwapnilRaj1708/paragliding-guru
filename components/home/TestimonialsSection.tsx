@@ -1,46 +1,17 @@
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import StarIcon from "@mui/icons-material/Star";
 import { Avatar, Box, Chip, Grid, Stack, Typography } from "@mui/material";
-import { assets } from "./assets";
+import testimonialsContent from "@/content/testimonials.json";
 
-const testimonials = [
-	{
-		name: "Shon Fulzele",
-		role: "P3 Graduate",
-		text: "Dream bigger. Do bigger. Training with Gurpreet taught me how to face my fears and stay calm under pressure. The experience transformed not just my flying skills, but my entire approach to challenges in life.",
-		rating: 5,
-		withPhoto: true,
-	},
-	{
-		name: "Priya Sharma",
-		role: "P2 Graduate",
-		text: "The best decision I ever made was joining PG Gurukul. The systematic approach to learning, combined with world-class safety standards, made me confident in the sky within weeks.",
-		rating: 5,
-		withPhoto: false,
-	},
-	{
-		name: "Rahul Mehta",
-		role: "Integrated Course",
-		text: "From zero experience to soaring with the eagles. The comprehensive training and personal attention made all the difference. Gurpreet's expertise is unmatched in India.",
-		rating: 5,
-		withPhoto: true,
-	},
-	{
-		name: "Ananya Verma",
-		role: "SIV Graduate",
-		text: "The SIV course was intense but incredibly valuable. Learning emergency procedures gave me the confidence to push my limits safely. Truly professional instruction.",
-		rating: 5,
-		withPhoto: false,
-	},
-];
+type Testimonial = {
+	name: string;
+	role: string;
+	text: string;
+	rating: number;
+	photo: string | null;
+};
 
-function TestimonialCard({
-	name,
-	role,
-	text,
-	rating,
-	withPhoto,
-}: (typeof testimonials)[number]) {
+function TestimonialCard({ name, role, text, rating, photo }: Testimonial) {
 	return (
 		<Box
 			sx={{
@@ -52,11 +23,6 @@ function TestimonialCard({
 				transition: "all 0.3s ease",
 				position: "relative",
 				overflow: "hidden",
-				// "&:hover": {
-				// 	bgcolor: "rgba(255,255,255,0.05)",
-				// 	borderColor: "rgba(255,255,255,0.2)",
-				// 	transform: "translateY(-4px)",
-				// },
 			}}
 		>
 			{/* Quote Icon */}
@@ -93,12 +59,8 @@ function TestimonialCard({
 
 				{/* Author */}
 				<Stack direction="row" spacing={2} alignItems="center">
-					{withPhoto ? (
-						<Avatar
-							src={assets.testimonial1.src}
-							alt={name}
-							sx={{ width: 48, height: 48 }}
-						/>
+					{photo ? (
+						<Avatar src={photo} alt={name} sx={{ width: 48, height: 48 }} />
 					) : (
 						<Avatar
 							sx={{
@@ -187,7 +149,7 @@ export default function TestimonialsSection() {
 			>
 				<Stack spacing={3} alignItems="center" textAlign="center">
 					<Chip
-						label="Student Stories"
+						label={testimonialsContent.badge}
 						sx={{
 							bgcolor: "#152b42",
 							color: "#b9ddff",
@@ -196,7 +158,7 @@ export default function TestimonialsSection() {
 						}}
 					/>
 					<Typography variant="h2" sx={{ color: "#FFFFFF" }}>
-						What Our Graduates Say
+						{testimonialsContent.title}
 					</Typography>
 					<Typography
 						sx={{
@@ -205,13 +167,12 @@ export default function TestimonialsSection() {
 							fontSize: { xs: 16, md: 18 },
 						}}
 					>
-						Join hundreds of pilots who started their journey with us and are
-						now soaring the skies with confidence.
+						{testimonialsContent.description}
 					</Typography>
 				</Stack>
 
 				<Grid container spacing={3}>
-					{testimonials.map((testimonial, index) => (
+					{testimonialsContent.items.map((testimonial, index) => (
 						<Grid size={{ xs: 12, md: 6 }} key={`${testimonial.name}-${index}`}>
 							<TestimonialCard {...testimonial} />
 						</Grid>

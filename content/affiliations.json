@@ -1,0 +1,27 @@
+{
+  "badge": "Officially Recognized",
+  "title": "Trusted & Accredited",
+  "description": "India's <strong>first and only</strong> paragliding school accredited by the <strong>Aero Club of India</strong>, empowered by DGCA to regulate aviation sports.",
+  "items": [
+    {
+      "name": "Aero Club of India",
+      "image": "/affiliation-1.png",
+      "description": "Government-authorized aviation sports regulator"
+    },
+    {
+      "name": "ATOI",
+      "image": "/affiliation-2.png",
+      "description": "Adventure Tour Operators Association"
+    },
+    {
+      "name": "PAI",
+      "image": "/affiliation-3.png",
+      "description": "Paragliding Association of India"
+    },
+    {
+      "name": "Award",
+      "image": "/affiliation-4.png",
+      "description": "Winners of \"Excellence in Adventure tourism\" award by ATOAI"
+    }
+  ]
+}

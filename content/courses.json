@@ -1,0 +1,67 @@
+{
+  "badge": "Our Courses",
+  "title": "Find Your Perfect Course",
+  "description": "From first flight to cross-country adventures, we have a program tailored for your goals.",
+  "items": [
+    {
+      "title": "P1+P2 Foundation",
+      "description": "Perfect for beginners. Learn ground handling, launch techniques, and your first solo flights in a safe environment.",
+      "duration": "14 Days",
+      "venue": "Bir & Narvana",
+      "cost": "₹50,000",
+      "level": "Beginner",
+      "tag": "Most Popular",
+      "featured": true
+    },
+    {
+      "title": "P3 Thermal Skills",
+      "description": "Master thermal flying and cross-country basics. Build confidence with advanced maneuvers and weather reading.",
+      "duration": "10 Days",
+      "venue": "Bir Valley",
+      "cost": "₹45,000",
+      "level": "Intermediate",
+      "tag": "Skill Builder",
+      "featured": false
+    },
+    {
+      "title": "Integrated Pro",
+      "description": "Comprehensive P1 to thermal soaring. The complete journey from zero to confident pilot in one program.",
+      "duration": "21 Days",
+      "venue": "Bir & Narvana",
+      "cost": "₹85,000",
+      "level": "Beginner",
+      "tag": "Best Value",
+      "featured": true
+    },
+    {
+      "title": "SIV Safety Training",
+      "description": "Advanced safety maneuvers over water. Learn to handle collapses, spins, and emergency situations.",
+      "duration": "5 Days",
+      "venue": "Lake Location",
+      "cost": "₹60,000",
+      "level": "Advanced",
+      "tag": "Safety Focus",
+      "featured": false
+    },
+    {
+      "title": "Paramotor Course",
+      "description": "Add powered flight to your skills. Learn motor launch, handling, and navigation techniques.",
+      "duration": "12 Days",
+      "venue": "Dedicated Site",
+      "cost": "₹75,000",
+      "level": "Intermediate",
+      "tag": "Powered Flight",
+      "featured": false
+    },
+    {
+      "title": "XC Cross-Country",
+      "description": "Long-distance flying mastery. Route planning, airspace navigation, and competition preparation.",
+      "duration": "7 Days",
+      "venue": "Bir Valley",
+      "cost": "₹55,000",
+      "level": "Advanced",
+      "tag": "Adventure",
+      "featured": false
+    }
+  ]
+}

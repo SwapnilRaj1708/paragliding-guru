@@ -1,0 +1,414 @@
+# Pages CMS Configuration for PG Gurukul
+# Documentation: https://pagescms.org/docs/configuration
+
+media:
+  input: public/images
+  output: /images
+
+content:
+  # Site-wide settings
+  - name: site
+    label: Site Settings
+    path: content/site.json
+    type: file
+    fields:
+      - name: siteName
+        label: Site Name
+        type: string
+      - name: tagline
+        label: Tagline
+        type: string
+      - name: description
+        label: Site Description
+        type: text
+      - name: phone
+        label: Phone Number
+        type: string
+      - name: email
+        label: Email Address
+        type: string
+      - name: location
+        label: Location
+        type: string
+      - name: mapEmbedUrl
+        label: Google Maps Embed URL
+        type: string
+
+  # Hero Section
+  - name: hero
+    label: Hero Section
+    path: content/hero.json
+    type: file
+    fields:
+      - name: badge
+        label: Badge Text
+        type: string
+      - name: title
+        label: Title (Line 1)
+        type: string
+      - name: titleHighlight
+        label: Title Highlight (Line 2)
+        type: string
+      - name: description
+        label: Description
+        type: text
+      - name: primaryButtonText
+        label: Primary Button Text
+        type: string
+      - name: primaryButtonLink
+        label: Primary Button Link
+        type: string
+      - name: stats
+        label: Statistics
+        type: object
+        list: true
+        fields:
+          - name: value
+            label: Value
+            type: string
+          - name: label
+            label: Label
+            type: string
+
+  # About Instructor Section
+  - name: instructor
+    label: Instructor Section
+    path: content/instructor.json
+    type: file
+    fields:
+      - name: name
+        label: Instructor Name
+        type: string
+      - name: title
+        label: Title/Role
+        type: string
+      - name: photo
+        label: Photo
+        type: image
+      - name: sectionTitle
+        label: Section Title
+        type: string
+      - name: paragraphs
+        label: Description Paragraphs
+        type: text
+        list: true
+      - name: buttonText
+        label: Button Text
+        type: string
+      - name: achievements
+        label: Achievements
+        type: object
+        list: true
+        fields:
+          - name: icon
+            label: Icon Name
+            type: string
+            description: "MUI icon name: FlightIcon, EmojiEventsIcon, PublicIcon, VerifiedUserIcon"
+          - name: value
+            label: Value
+            type: string
+          - name: label
+            label: Label
+            type: string
+
+  # Affiliations Section
+  - name: affiliations
+    label: Affiliations Section
+    path: content/affiliations.json
+    type: file
+    fields:
+      - name: badge
+        label: Badge Text
+        type: string
+      - name: title
+        label: Section Title
+        type: string
+      - name: description
+        label: Description
+        type: text
+      - name: items
+        label: Affiliation Items
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Organization Name
+            type: string
+          - name: image
+            label: Logo Image
+            type: image
+          - name: description
+            label: Description
+            type: string
+
+  # Why Choose Us Section
+  - name: whyChooseUs
+    label: Why Choose Us Section
+    path: content/why-choose-us.json
+    type: file
+    fields:
+      - name: badge
+        label: Badge Text
+        type: string
+      - name: title
+        label: Section Title
+        type: string
+      - name: description
+        label: Description
+        type: text
+      - name: reasons
+        label: Reasons
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: Title
+            type: string
+          - name: description
+            label: Description
+            type: text
+          - name: icon
+            label: Icon Name
+            type: string
+            description: "MUI icon name: SchoolIcon, TrendingUpIcon, CardMembershipIcon, SecurityIcon"
+
+  # Courses Section
+  - name: courses
+    label: Courses
+    path: content/courses.json
+    type: file
+    fields:
+      - name: badge
+        label: Badge Text
+        type: string
+      - name: title
+        label: Section Title
+        type: string
+      - name: description
+        label: Description
+        type: text
+      - name: items
+        label: Course List
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: Course Title
+            type: string
+          - name: description
+            label: Description
+            type: text
+          - name: duration
+            label: Duration
+            type: string
+          - name: venue
+            label: Venue/Location
+            type: string
+          - name: cost
+            label: Cost
+            type: string
+          - name: level
+            label: Level
+            type: select
+            options:
+              values:
+                - Beginner
+                - Intermediate
+                - Advanced
+          - name: tag
+            label: Tag
+            type: string
+          - name: featured
+            label: Featured Course
+            type: boolean
+
+  # Testimonials Section
+  - name: testimonials
+    label: Testimonials
+    path: content/testimonials.json
+    type: file
+    fields:
+      - name: badge
+        label: Badge Text
+        type: string
+      - name: title
+        label: Section Title
+        type: string
+      - name: description
+        label: Description
+        type: text
+      - name: items
+        label: Testimonials
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Name
+            type: string
+          - name: role
+            label: Role/Course
+            type: string
+          - name: text
+            label: Testimonial Text
+            type: text
+          - name: rating
+            label: Rating (1-5)
+            type: number
+          - name: photo
+            label: Photo
+            type: image
+            required: false
+
+  # FAQ Section
+  - name: faqs
+    label: FAQs
+    path: content/faqs.json
+    type: file
+    fields:
+      - name: badge
+        label: Badge Text
+        type: string
+      - name: title
+        label: Section Title
+        type: string
+      - name: description
+        label: Description
+        type: text
+      - name: items
+        label: FAQ Items
+        type: object
+        list: true
+        fields:
+          - name: question
+            label: Question
+            type: string
+          - name: answer
+            label: Answer
+            type: text
+      - name: ctaTitle
+        label: CTA Title
+        type: string
+      - name: ctaDescription
+        label: CTA Description
+        type: string
+      - name: ctaLinkText
+        label: CTA Link Text
+        type: string
+
+  # Gallery Section
+  - name: gallery
+    label: Gallery
+    path: content/gallery.json
+    type: file
+    fields:
+      - name: badge
+        label: Badge Text
+        type: string
+      - name: title
+        label: Section Title
+        type: string
+      - name: description
+        label: Description
+        type: text
+      - name: images
+        label: Gallery Images
+        type: object
+        list: true
+        fields:
+          - name: src
+            label: Image
+            type: image
+          - name: alt
+            label: Alt Text/Caption
+            type: string
+          - name: span
+            label: Size
+            type: select
+            options:
+              values:
+                - small
+                - large
+                - wide
+
+  # Contact Section
+  - name: contact
+    label: Contact Section
+    path: content/contact.json
+    type: file
+    fields:
+      - name: badge
+        label: Badge Text
+        type: string
+      - name: title
+        label: Section Title
+        type: string
+      - name: description
+        label: Description
+        type: text
+      - name: formTitle
+        label: Form Title
+        type: string
+      - name: formDescription
+        label: Form Description
+        type: string
+      - name: buttonText
+        label: Submit Button Text
+        type: string
+
+  # Footer Section
+  - name: footer
+    label: Footer
+    path: content/footer.json
+    type: file
+    fields:
+      - name: description
+        label: Footer Description
+        type: text
+      - name: socialLinks
+        label: Social Media Links
+        type: object
+        list: true
+        fields:
+          - name: platform
+            label: Platform
+            type: select
+            options:
+              values:
+                - Facebook
+                - Instagram
+                - YouTube
+                - LinkedIn
+                - Twitter
+          - name: url
+            label: URL
+            type: string
+      - name: copyrightText
+        label: Copyright Text
+        type: string
+
+  # Navigation
+  - name: navigation
+    label: Navigation
+    path: content/navigation.json
+    type: file
+    fields:
+      - name: items
+        label: Nav Items
+        type: object
+        list: true
+        fields:
+          - name: label
+            label: Label
+            type: string
+          - name: href
+            label: Link
+            type: string
+          - name: withCaret
+            label: Show Dropdown Arrow
+            type: boolean
+      - name: ctaText
+        label: CTA Button Text
+        type: string
+      - name: ctaLink
+        label: CTA Button Link
+        type: string
