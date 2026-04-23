@@ -16,10 +16,28 @@ const socialIconMap: Record<string, React.ElementType> = {
 	Twitter: TwitterIcon,
 };
 
-const footerLinks = {
-	courses: coursesContent.items.map((course) => course.title),
-	company: ["About Us", "Our Instructor", "Gallery", "Testimonials", "FAQs"],
-	support: ["Contact Us", "Location", "Booking Policy", "Safety Guidelines"],
+type FooterLink = { label: string; href: string };
+
+const footerLinks: {
+	courses: FooterLink[];
+	company: FooterLink[];
+	support: FooterLink[];
+} = {
+	courses: coursesContent.items.map((course) => ({
+		label: course.title,
+		href: "#courses",
+	})),
+	company: [
+		{ label: "About Us", href: "#about" },
+		{ label: "Our Instructor", href: "#about" },
+		{ label: "Gallery", href: "#gallery" },
+		{ label: "Testimonials", href: "#testimonials" },
+		{ label: "FAQs", href: "#faqs" },
+	],
+	support: [
+		{ label: "Contact Us", href: "#contact" },
+		{ label: "Location", href: "#contact" },
+	],
 };
 
 export default function Footer() {
@@ -114,9 +132,9 @@ export default function Footer() {
 						<Stack spacing={1.5}>
 							{footerLinks.courses.map((link) => (
 								<Typography
-									key={link}
+									key={link.label}
 									component="a"
-									href="#courses"
+									href={link.href}
 									sx={{
 										color: "rgba(255,255,255,0.7)",
 										fontSize: 14,
@@ -127,7 +145,7 @@ export default function Footer() {
 										},
 									}}
 								>
-									{link}
+									{link.label}
 								</Typography>
 							))}
 						</Stack>
@@ -150,9 +168,9 @@ export default function Footer() {
 						<Stack spacing={1.5}>
 							{footerLinks.company.map((link) => (
 								<Typography
-									key={link}
+									key={link.label}
 									component="a"
-									href="#"
+									href={link.href}
 									sx={{
 										color: "rgba(255,255,255,0.7)",
 										fontSize: 14,
@@ -163,7 +181,7 @@ export default function Footer() {
 										},
 									}}
 								>
-									{link}
+									{link.label}
 								</Typography>
 							))}
 						</Stack>
@@ -186,9 +204,9 @@ export default function Footer() {
 						<Stack spacing={1.5}>
 							{footerLinks.support.map((link) => (
 								<Typography
-									key={link}
+									key={link.label}
 									component="a"
-									href="#contact"
+									href={link.href}
 									sx={{
 										color: "rgba(255,255,255,0.7)",
 										fontSize: 14,
@@ -199,7 +217,7 @@ export default function Footer() {
 										},
 									}}
 								>
-									{link}
+									{link.label}
 								</Typography>
 							))}
 						</Stack>
