@@ -34,7 +34,8 @@ type CourseSchedule = {
 
 type Course = {
 	title: string;
-	description: string;
+	primaryDescription: string;
+	secondaryDescription: string;
 	duration: string;
 	venue: string;
 	cost: string;
@@ -210,15 +211,16 @@ function CourseCard({
 							minHeight: 66,
 						}}
 					>
-						{course.description}
+						{course.primaryDescription}
 					</Typography>
 
 					<Stack spacing={1}>
 						<Stack direction="row" spacing={1} alignItems="center">
 							<AccessTimeIcon sx={{ fontSize: 18, color: "#94A3B8" }} />
 							<Typography sx={{ color: "#5A6370", fontSize: 14 }}>
-								<strong style={{ color: "#1A1D21" }}>{course.duration}</strong>{" "}
-								(may vary)
+								<strong style={{ color: "#1A1D21" }}>
+									{course.duration}
+								</strong>{" "}
 							</Typography>
 						</Stack>
 						<Stack direction="row" spacing={1} alignItems="center">
@@ -401,7 +403,16 @@ function CourseDetailsDialog({
 							lineHeight: 1.7,
 						}}
 					>
-						{course.description}
+						{course.primaryDescription}
+						<br />
+						{course.secondaryDescription}
+						<br />
+						<br />
+						<span>*individual learning for each student might vary.</span>
+						<br />
+						<span>*prices based on number of days mentioned</span>
+						<br />
+						<span>*days may vary according to weather conditions</span>
 					</Typography>
 
 					<Grid container spacing={2}>
@@ -557,6 +568,11 @@ function CourseDetailsDialog({
 									/>
 								))}
 							</Stack>
+						)}
+						{sessions.length === 0 && (
+							<Typography sx={{ color: "#5A6370", fontSize: 14 }}>
+								Contact us to know more about the upcoming dates.
+							</Typography>
 						)}
 					</Box>
 
@@ -958,10 +974,7 @@ function ApplyCourseDialog({
 							</Grid>
 
 							{errorMessage && (
-								<Alert
-									severity="error"
-									onClose={() => setErrorMessage(null)}
-								>
+								<Alert severity="error" onClose={() => setErrorMessage(null)}>
 									{errorMessage}
 								</Alert>
 							)}

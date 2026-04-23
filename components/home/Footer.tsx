@@ -1,12 +1,12 @@
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import YouTubeIcon from "@mui/icons-material/YouTube";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
-import Logo from "./Logo";
-import footerContent from "@/content/footer.json";
 import coursesContent from "@/content/courses.json";
+import footerContent from "@/content/footer.json";
+import Logo from "./Logo";
 
 const socialIconMap: Record<string, React.ElementType> = {
 	Facebook: FacebookIcon,
@@ -76,6 +76,7 @@ export default function Footer() {
 										key={social.platform}
 										aria-label={social.platform}
 										href={social.url}
+										target="_blank"
 										sx={{
 											bgcolor: "rgba(255,255,255,0.05)",
 											color: "rgba(255,255,255,0.7)",

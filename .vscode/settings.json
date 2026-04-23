@@ -3,5 +3,9 @@
 		"source.organizeImports.biome": "explicit",
 		"source.fixAll.biome": "explicit"
 	},
-	"snyk.advanced.autoSelectOrganization": true
+	"snyk.advanced.autoSelectOrganization": true,
+	"cSpell.words": [
+		"Gurukul",
+		"Thermalling"
+	]
 }

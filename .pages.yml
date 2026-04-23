@@ -244,8 +244,11 @@ content:
           - name: title
             label: Course Title
             type: string
-          - name: description
-            label: Description
+          - name: primaryDescription
+            label: Primary Description
+            type: string
+          - name: secondaryDescription
+            label: Secondary Description
             type: text
           - name: duration
             label: Duration
