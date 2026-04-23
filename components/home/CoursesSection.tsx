@@ -7,9 +7,11 @@ import EventIcon from "@mui/icons-material/Event";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import SendIcon from "@mui/icons-material/Send";
 import {
+	Alert,
 	Box,
 	Button,
 	Chip,
+	CircularProgress,
 	Dialog,
 	DialogContent,
 	Grid,
@@ -23,7 +25,6 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import coursesContent from "@/content/courses.json";
-import siteContent from "@/content/site.json";
 import { assets } from "./assets";
 
 type CourseSchedule = {
@@ -60,6 +61,8 @@ const fearHandlingOptions = [
 type ApplicationForm = {
 	fullName: string;
 	dob: string;
+	email: string;
+	phone: string;
 	nationality: string;
 	weight: string;
 	batch: string;
@@ -74,6 +77,8 @@ type ApplicationForm = {
 const emptyForm: ApplicationForm = {
 	fullName: "",
 	dob: "",
+	email: "",
+	phone: "",
 	nationality: "",
 	weight: "",
 	batch: "",
@@ -606,6 +611,8 @@ function ApplyCourseDialog({
 	const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 	const [form, setForm] = useState<ApplicationForm>(emptyForm);
 	const [submitted, setSubmitted] = useState(false);
+	const [submitting, setSubmitting] = useState(false);
+	const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
 	if (!course) return null;
 
@@ -617,53 +624,64 @@ function ApplyCourseDialog({
 		setForm((prev) => ({ ...prev, [key]: value }));
 	};
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		const subject = `Course Application — ${course.title}`;
-		const bodyLines = [
-			`Course: ${course.title}`,
-			`Duration: ${course.duration}`,
-			`Venue: ${course.venue}`,
-			`Cost: ${course.cost}`,
-			"",
-			"— Applicant Details —",
-			`Full Name: ${form.fullName}`,
-			`Date of Birth: ${form.dob}`,
-			`Nationality: ${form.nationality}`,
-			`Weight: ${form.weight}`,
-			`Batch Applying For: ${form.batch}`,
-			`Education: ${form.education}`,
-			`Fitness Level: ${form.fitnessLevel}`,
-			"",
-			`Sports / Adventure Sports History:`,
-			form.sportsHistory,
-			"",
-			`Coordination Activities (Dance / Yoga / Pilates / etc.):`,
-			form.coordinationActivities,
-			"",
-			`How They Handle Fear:`,
-			form.fearHandling,
-			"",
-			`Motivation for Paragliding:`,
-			form.motivation,
-		];
-		const body = encodeURIComponent(bodyLines.join("\n"));
-		const mailto = `mailto:${siteContent.email}?subject=${encodeURIComponent(
-			subject,
-		)}&body=${body}`;
-		window.location.href = mailto;
-		setSubmitted(true);
+		if (submitting) return;
+
+		setSubmitting(true);
+		setErrorMessage(null);
+
+		try {
+			const response = await fetch("/api/apply-course", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					course: {
+						title: course.title,
+						duration: course.duration,
+						venue: course.venue,
+						cost: course.cost,
+					},
+					application: form,
+				}),
+			});
+
+			const data = (await response.json().catch(() => ({}))) as {
+				ok?: boolean;
+				error?: string;
+			};
+
+			if (!response.ok || !data.ok) {
+				throw new Error(
+					data.error ?? "Something went wrong. Please try again.",
+				);
+			}
+
+			setSubmitted(true);
+		} catch (error) {
+			setErrorMessage(
+				error instanceof Error
+					? error.message
+					: "Something went wrong. Please try again.",
+			);
+		} finally {
+			setSubmitting(false);
+		}
 	};
 
 	const handleClose = () => {
 		setForm(emptyForm);
 		setSubmitted(false);
+		setSubmitting(false);
+		setErrorMessage(null);
 		onClose();
 	};
 
 	const handleBack = () => {
 		setForm(emptyForm);
 		setSubmitted(false);
+		setSubmitting(false);
+		setErrorMessage(null);
 		onBack();
 	};
 
@@ -742,12 +760,12 @@ function ApplyCourseDialog({
 						sx={{ py: 4, textAlign: "center" }}
 					>
 						<Typography variant="h5" sx={{ color: "#0a5b2f", fontWeight: 700 }}>
-							Your email client should now be open
+							Application received!
 						</Typography>
 						<Typography sx={{ color: "#5A6370", maxWidth: 420 }}>
-							We&apos;ve pre-filled a message with your application. Please
-							review and send it to complete your enrollment request. We&apos;ll
-							get back to you within 24 hours.
+							Thanks for applying to {course.title}. We&apos;ve received your
+							details and will get back to you within 24 hours to confirm the
+							next steps.
 						</Typography>
 						<Button
 							variant="contained"
@@ -779,6 +797,27 @@ function ApplyCourseDialog({
 										fullWidth
 										required
 										slotProps={{ inputLabel: { shrink: true } }}
+									/>
+								</Grid>
+								<Grid size={{ xs: 12, sm: 6 }}>
+									<TextField
+										label="Email Address"
+										type="email"
+										placeholder="you@example.com"
+										value={form.email}
+										onChange={(e) => updateField("email", e.target.value)}
+										fullWidth
+										required
+									/>
+								</Grid>
+								<Grid size={{ xs: 12, sm: 6 }}>
+									<TextField
+										label="Phone Number"
+										placeholder="+91 98765 43210"
+										value={form.phone}
+										onChange={(e) => updateField("phone", e.target.value)}
+										fullWidth
+										required
 									/>
 								</Grid>
 								<Grid size={{ xs: 12, sm: 6 }}>
@@ -918,6 +957,15 @@ function ApplyCourseDialog({
 								</Grid>
 							</Grid>
 
+							{errorMessage && (
+								<Alert
+									severity="error"
+									onClose={() => setErrorMessage(null)}
+								>
+									{errorMessage}
+								</Alert>
+							)}
+
 							<Box
 								sx={{
 									pt: 2,
@@ -932,6 +980,7 @@ function ApplyCourseDialog({
 								<Button
 									variant="text"
 									onClick={handleBack}
+									disabled={submitting}
 									sx={{ color: "#5A6370", textTransform: "none" }}
 								>
 									← Back to course details
@@ -940,7 +989,14 @@ function ApplyCourseDialog({
 									type="submit"
 									variant="contained"
 									size="large"
-									endIcon={<SendIcon />}
+									disabled={submitting}
+									endIcon={
+										submitting ? (
+											<CircularProgress size={18} sx={{ color: "inherit" }} />
+										) : (
+											<SendIcon />
+										)
+									}
 									sx={{
 										px: 4,
 										py: 1.25,
@@ -948,7 +1004,7 @@ function ApplyCourseDialog({
 										fontWeight: 600,
 									}}
 								>
-									Submit Application
+									{submitting ? "Submitting…" : "Submit Application"}
 								</Button>
 							</Box>
 						</Stack>

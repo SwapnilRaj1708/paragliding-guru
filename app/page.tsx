@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import AboutInstructorSection from "../components/home/AboutInstructorSection";
-import AffiliatedSection from "../components/home/AffiliatedSection";
+import CertificationSection from "../components/home/CertificationSection";
 import ContactSection from "../components/home/ContactSection";
 import CoursesSection from "../components/home/CoursesSection";
 import FaqSection from "../components/home/FaqSection";
@@ -24,7 +24,7 @@ export default function Home() {
 			<Navbar />
 			<Box component="main">
 				<HeroSection />
-				<AffiliatedSection />
+				<CertificationSection />
 				<AboutInstructorSection />
 				<WhyChooseUsSection />
 				<CoursesSection />

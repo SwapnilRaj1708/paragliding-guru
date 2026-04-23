@@ -26,6 +26,8 @@ export default function Logo({ size = "sm" }: LogoProps) {
 	return (
 		<Stack direction="row" spacing={config.spacing} alignItems="center">
 			<Box
+				component="a"
+				href="/"
 				sx={{
 					width: config.image,
 					height: config.image,
@@ -47,7 +49,8 @@ export default function Logo({ size = "sm" }: LogoProps) {
 					}}
 				/>
 			</Box>
-			<Box>
+			<Box component="a"
+				href="/">
 				<Typography
 					sx={{
 						fontFamily: "var(--font-outfit), system-ui, sans-serif",

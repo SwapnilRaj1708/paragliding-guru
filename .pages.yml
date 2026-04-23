@@ -46,6 +46,9 @@ content:
       - name: badge
         label: Badge Text
         type: string
+      - name: backgroundImage
+        label: Background Image
+        type: image
       - name: title
         label: Title (Line 1)
         type: string
@@ -157,10 +160,10 @@ content:
             type: text
             list: true
 
-  # Affiliations Section
-  - name: affiliations
-    label: Affiliations Section
-    path: content/affiliations.json
+  # Certifications Section
+  - name: certifications
+    label: Certifications Section
+    path: content/certifications.json
     type: file
     fields:
       - name: badge
@@ -271,11 +274,11 @@ content:
             label: Schedule
             type: object
             fields:
-              - name: note
-                label: Schedule Note
-                type: string
-                description: "Free-text note shown above session dates (e.g. 'Spring/Summer 2026 start dates — Venue: Bir / Billing')"
-                required: false
+              # - name: note
+              #   label: Schedule Note
+              #   type: string
+              #   description: "Free-text note shown above session dates (e.g. 'Spring/Summer 2026 start dates — Venue: Bir / Billing')"
+              #   required: false
               - name: sessions
                 label: Batch Start Dates
                 type: string

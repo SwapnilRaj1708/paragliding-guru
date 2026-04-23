@@ -5,23 +5,36 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
 import SendIcon from "@mui/icons-material/Send";
 import {
+	Alert,
 	Box,
 	Button,
 	Chip,
+	CircularProgress,
 	Grid,
 	MenuItem,
 	Stack,
 	TextField,
 	Typography,
 } from "@mui/material";
+import { useState } from "react";
 import contactContent from "@/content/contact.json";
 import siteContent from "@/content/site.json";
 import coursesContent from "@/content/courses.json";
 
-const iconMap: Record<string, React.ElementType> = {
-	LocationOnIcon,
-	PhoneIcon,
-	EmailIcon,
+type ContactFormState = {
+	name: string;
+	email: string;
+	phone: string;
+	course: string;
+	message: string;
+};
+
+const emptyContactForm: ContactFormState = {
+	name: "",
+	email: "",
+	phone: "",
+	course: "",
+	message: "",
 };
 
 const contactInfo = [
@@ -43,6 +56,63 @@ const contactInfo = [
 ];
 
 export default function ContactSection() {
+	const [form, setForm] = useState<ContactFormState>(emptyContactForm);
+	const [submitting, setSubmitting] = useState(false);
+	const [feedback, setFeedback] = useState<{
+		type: "success" | "error";
+		message: string;
+	} | null>(null);
+
+	const updateField = <K extends keyof ContactFormState>(
+		key: K,
+		value: ContactFormState[K],
+	) => {
+		setForm((prev) => ({ ...prev, [key]: value }));
+	};
+
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		if (submitting) return;
+
+		setSubmitting(true);
+		setFeedback(null);
+
+		try {
+			const response = await fetch("/api/contact", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(form),
+			});
+
+			const data = (await response.json().catch(() => ({}))) as {
+				ok?: boolean;
+				error?: string;
+			};
+
+			if (!response.ok || !data.ok) {
+				throw new Error(
+					data.error ?? "Something went wrong. Please try again.",
+				);
+			}
+
+			setFeedback({
+				type: "success",
+				message: "Thanks! We'll get back to you within 24 hours.",
+			});
+			setForm(emptyContactForm);
+		} catch (error) {
+			setFeedback({
+				type: "error",
+				message:
+					error instanceof Error
+						? error.message
+						: "Something went wrong. Please try again.",
+			});
+		} finally {
+			setSubmitting(false);
+		}
+	};
+
 	return (
 		<Box
 			component="section"
@@ -84,6 +154,9 @@ export default function ContactSection() {
 				<Grid container spacing={4}>
 					<Grid size={{ xs: 12, md: 5 }}>
 						<Box
+							component="form"
+							onSubmit={handleSubmit}
+							noValidate
 							sx={{
 								bgcolor: "#FFFFFF",
 								borderRadius: 3,
@@ -107,6 +180,10 @@ export default function ContactSection() {
 									<TextField
 										label="Your Name"
 										placeholder="John Doe"
+										value={form.name}
+										onChange={(e) => updateField("name", e.target.value)}
+										required
+										disabled={submitting}
 										fullWidth
 										sx={{
 											"& .MuiOutlinedInput-root": {
@@ -118,6 +195,10 @@ export default function ContactSection() {
 										label="Email Address"
 										placeholder="john@example.com"
 										type="email"
+										value={form.email}
+										onChange={(e) => updateField("email", e.target.value)}
+										required
+										disabled={submitting}
 										fullWidth
 										sx={{
 											"& .MuiOutlinedInput-root": {
@@ -128,6 +209,9 @@ export default function ContactSection() {
 									<TextField
 										label="Phone Number"
 										placeholder="+91 98765 43210"
+										value={form.phone}
+										onChange={(e) => updateField("phone", e.target.value)}
+										disabled={submitting}
 										fullWidth
 										sx={{
 											"& .MuiOutlinedInput-root": {
@@ -138,8 +222,10 @@ export default function ContactSection() {
 									<TextField
 										label="Interested Course"
 										select
+										value={form.course}
+										onChange={(e) => updateField("course", e.target.value)}
+										disabled={submitting}
 										fullWidth
-										defaultValue=""
 										sx={{
 											"& .MuiOutlinedInput-root": {
 												bgcolor: "#F8FAFC",
@@ -148,7 +234,7 @@ export default function ContactSection() {
 									>
 										<MenuItem value="">Select a course</MenuItem>
 										{coursesContent.items.map((course) => (
-											<MenuItem key={course.title} value={course.title.toLowerCase().replace(/\s+/g, '-')}>
+											<MenuItem key={course.title} value={course.title}>
 												{course.title}
 											</MenuItem>
 										))}
@@ -156,6 +242,10 @@ export default function ContactSection() {
 									<TextField
 										label="Your Message"
 										placeholder="Tell us about your flying goals..."
+										value={form.message}
+										onChange={(e) => updateField("message", e.target.value)}
+										required
+										disabled={submitting}
 										multiline
 										rows={4}
 										fullWidth
@@ -167,12 +257,29 @@ export default function ContactSection() {
 									/>
 								</Stack>
 
+								{feedback && (
+									<Alert
+										severity={feedback.type}
+										onClose={() => setFeedback(null)}
+									>
+										{feedback.message}
+									</Alert>
+								)}
+
 								<Button
+									type="submit"
 									variant="contained"
 									size="large"
-									endIcon={<SendIcon />}
+									disabled={submitting}
+									endIcon={
+										submitting ? (
+											<CircularProgress size={18} sx={{ color: "inherit" }} />
+										) : (
+											<SendIcon />
+										)
+									}
 								>
-									{contactContent.buttonText}
+									{submitting ? "Sending…" : contactContent.buttonText}
 								</Button>
 							</Stack>
 						</Box>

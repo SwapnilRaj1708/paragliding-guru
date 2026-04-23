@@ -4,16 +4,35 @@
   "description": "From first flight to cross-country adventures, we have a program tailored for your goals.",
   "items": [
     {
-      "title": "P1+P2 Foundation",
+      "title": "P1 + P2 Foundation",
       "description": "Perfect for beginners. Learn ground handling, launch techniques, and your first solo flights in a safe environment.",
-      "duration": "14 Days",
+      "duration": "8 Days",
       "venue": "Bir & Narvana",
-      "cost": "₹50,000",
+      "cost": "₹40,000",
       "level": "Beginner",
       "tag": "Most Popular",
       "featured": true,
       "schedule": {
-        "note": "Spring/Summer 2026 start dates — Venue: Bir / Billing",
+        "sessions": [
+          "Feb 16, 2026",
+          "Mar 2, 2026",
+          "Mar 16, 2026",
+          "Apr 4, 2026",
+          "Apr 18, 2026",
+          "May 2, 2026"
+        ]
+      }
+    },
+    {
+      "title": "P1 + P2 + P3 Foundation",
+      "description": "Perfect for beginners. Learn ground handling, launch techniques, and your first solo flights in a safe environment.",
+      "duration": "11 Days",
+      "venue": "Bir & Narvana",
+      "cost": "₹55,000",
+      "level": "Beginner",
+      "tag": "Most Popular",
+      "featured": true,
+      "schedule": {
         "sessions": [
           "Feb 16, 2026",
           "Mar 2, 2026",
@@ -34,7 +53,6 @@
       "tag": "Skill Builder",
       "featured": false,
       "schedule": {
-        "note": "Spring/Summer 2026 start dates (P1+P2+P3 combined) — Venue: Bir / Billing",
         "sessions": [
           "Feb 16, 2026",
           "Mar 2, 2026",
@@ -55,7 +73,6 @@
       "tag": "Best Value",
       "featured": true,
       "schedule": {
-        "note": "Spring/Summer 2026 start dates — Venue: Bir / Billing",
         "sessions": [
           "Feb 16, 2026",
           "Mar 2, 2026",
@@ -76,7 +93,6 @@
       "tag": "Safety Focus",
       "featured": false,
       "schedule": {
-        "note": "No SIV in spring — likely October 2026 at Bilaspur, H.P.",
         "sessions": []
       }
     },
@@ -90,7 +106,6 @@
       "tag": "Powered Flight",
       "featured": false,
       "schedule": {
-        "note": "Contact us for upcoming batch dates",
         "sessions": []
       }
     },
@@ -104,10 +119,9 @@
       "tag": "Adventure",
       "featured": false,
       "schedule": {
-        "note": "XC & Thermaling — Spring 2026",
         "sessions": [
-          "March 13 – March 18, 2026",
-          "April 15 – April 20, 2026"
+          "March 13 - March 18, 2026",
+          "April 15 - April 20, 2026"
         ]
       }
     }

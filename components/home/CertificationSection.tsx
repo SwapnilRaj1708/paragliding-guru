@@ -3,13 +3,13 @@
 import VerifiedIcon from "@mui/icons-material/Verified";
 import { Box, Chip, Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import affiliationsContent from "@/content/affiliations.json";
+import certificationsContent from "@/content/certifications.json";
 
-export default function AffiliatedSection() {
+export default function CertificationSection() {
 	return (
 		<Box
 			component="section"
-			id="affiliations"
+			id="certifications"
 			sx={{
 				position: "relative",
 				background: "linear-gradient(180deg, #1c1c1c 0%, #3d3d3f 100%)",
@@ -41,7 +41,7 @@ export default function AffiliatedSection() {
 				<Stack spacing={3} alignItems="center" textAlign="center">
 					<Chip
 						icon={<VerifiedIcon sx={{ fontSize: 16 }} />}
-						label={affiliationsContent.badge}
+						label={certificationsContent.badge}
 						sx={{
 							bgcolor: "#152b42",
 							color: "#b9ddff",
@@ -60,7 +60,7 @@ export default function AffiliatedSection() {
 							textAlign: "center",
 						}}
 					>
-						{affiliationsContent.title}
+						{certificationsContent.title}
 					</Typography>
 					<Typography
 						sx={{
@@ -72,7 +72,8 @@ export default function AffiliatedSection() {
 								color: "#FFFFFF",
 							},
 						}}
-						dangerouslySetInnerHTML={{ __html: affiliationsContent.description }}
+						// biome-ignore lint/security/noDangerouslySetInnerHtml: <this is required as the content is in HTML format>
+						dangerouslySetInnerHTML={{ __html: certificationsContent.description }}
 					/>
 				</Stack>
 
@@ -82,16 +83,16 @@ export default function AffiliatedSection() {
 					sx={{ width: "100%" }}
 					justifyContent="center"
 				>
-					{affiliationsContent.items.map((affiliation) => (
+					{certificationsContent.items.map((certification) => (
 						<Box
-							key={affiliation.name}
+							key={certification.name}
 							sx={{
 								flex: { md: "1 1 0" },
 								maxWidth: { md: 320 },
 								bgcolor: "rgba(255,255,255,0.03)",
 								border: "1px solid rgba(255,255,255,0.1)",
 								borderRadius: 3,
-								p: 3,
+								p: 1.5,
 								transition: "all 0.3s ease",
 								"&:hover": {
 									bgcolor: "rgba(255,255,255,0.05)",
@@ -105,7 +106,7 @@ export default function AffiliatedSection() {
 									sx={{
 										bgcolor: "#FFFFFF",
 										borderRadius: 2,
-										p: affiliation.name === "Award" ? 0 : 2,
+										p: certification.name === "Award" ? 0 : 2,
 										width: "100%",
 										display: "flex",
 										justifyContent: "center",
@@ -114,15 +115,15 @@ export default function AffiliatedSection() {
 									}}
 								>
 									<Image
-										src={affiliation.image}
-										alt={affiliation.name}
+										src={certification.image}
+										alt={certification.name}
 										width={200}
 										height={70}
 										style={{
 											objectFit:
-												affiliation.name === "Award" ? "contain" : "contain",
+												certification.name === "Award" ? "contain" : "contain",
 											maxHeight: "100%",
-											width: affiliation.name === "Award" ? "100%" : "auto",
+											width: certification.name === "Award" ? "100%" : "auto",
 										}}
 									/>
 								</Box>
@@ -132,7 +133,7 @@ export default function AffiliatedSection() {
 										fontSize: 14,
 									}}
 								>
-									{affiliation.description}
+									{certification.description}
 								</Typography>
 							</Stack>
 						</Box>

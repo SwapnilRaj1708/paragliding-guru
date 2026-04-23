@@ -22,6 +22,11 @@
       "name": "Award",
       "image": "/affiliation-4.png",
       "description": "Winners of \"Excellence in Adventure tourism\" award by ATOAI"
+    },
+    {
+      "name": "Certification",
+      "image": "/affiliation-4.png",
+      "description": "Winners of \"Excellence in Adventure tourism\" award by ATOAI"
     }
   ]
 }
