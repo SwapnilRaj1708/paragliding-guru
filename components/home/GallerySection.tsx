@@ -1,4 +1,4 @@
-import ZoomInIcon from "@mui/icons-material/ZoomIn";
+// import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import { Box, Chip, Stack, Typography } from "@mui/material";
 import galleryContent from "@/content/gallery.json";
 
@@ -15,7 +15,6 @@ function GalleryImage({ src, alt }: { src: string; alt: string }) {
 				position: "relative",
 				borderRadius: 2,
 				overflow: "hidden",
-				cursor: "pointer",
 				height: "100%",
 				minHeight: { xs: 180, md: 200 },
 				"&:hover": {
