@@ -2,7 +2,7 @@
   "name": "Gurpreet Singh",
   "title": "Lead Instructor & Founder",
   "photo": "/instructor-photo.png",
-  "sectionTitle": "Learn from One of India's Best",
+  "sectionTitle": "Learn from India's Best",
   "paragraphs": [
     "Gurpreet is <strong>one of India's most accomplished</strong> paragliding competition pilots, with over three decades of flying experience since 1993.",
     "As a <strong>BHPA-certified paragliding instructor</strong>, <strong>Flying since 1993</strong> and competing <strong>internationally since 2002</strong>. likely the only one in India certified by a globally accredited body.",
@@ -10,9 +10,25 @@
   ],
   "buttonText": "Train with Gurpreet",
   "achievements": [
-    { "icon": "FlightIcon", "value": "30+", "label": "Years Flying" },
-    { "icon": "EmojiEventsIcon", "value": "50+", "label": "Competitions" },
-    { "icon": "PublicIcon", "value": "10+", "label": "Countries" },
-    { "icon": "VerifiedUserIcon", "value": "BHPA", "label": "Certified" }
+    {
+      "icon": "FlightIcon",
+      "value": "30+",
+      "label": "Years Flying"
+    },
+    {
+      "icon": "EmojiEventsIcon",
+      "value": "50+",
+      "label": "Competitions"
+    },
+    {
+      "icon": "PublicIcon",
+      "value": "10+",
+      "label": "Countries"
+    },
+    {
+      "icon": "VerifiedUserIcon",
+      "value": "BHPA",
+      "label": "Certified"
+    }
   ]
 }
