@@ -1,3 +1,5 @@
+"use client";
+
 import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
 import { Box, Button, Chip, Stack, Typography } from "@mui/material";
 import heroContent from "@/content/hero.json";

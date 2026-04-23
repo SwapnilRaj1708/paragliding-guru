@@ -115,6 +115,48 @@ content:
             label: Label
             type: string
 
+  # Team Section
+  - name: team
+    label: Team Section
+    path: content/team.json
+    type: file
+    fields:
+      - name: sectionTitle
+        label: Section Title
+        type: string
+      - name: showButtonText
+        label: Show Button Text
+        type: string
+      - name: hideButtonText
+        label: Hide Button Text
+        type: string
+      - name: members
+        label: Team Members
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Name
+            type: string
+          - name: role
+            label: Role
+            type: string
+          - name: flyingSince
+            label: Flying Since (Year)
+            type: string
+            required: false
+          - name: qualification
+            label: Qualification
+            type: string
+            required: false
+          - name: photo
+            label: Photo
+            type: image
+          - name: bio
+            label: Bio Paragraphs
+            type: text
+            list: true
+
   # Affiliations Section
   - name: affiliations
     label: Affiliations Section

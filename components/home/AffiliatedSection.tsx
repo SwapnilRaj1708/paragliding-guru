@@ -1,3 +1,5 @@
+"use client";
+
 import VerifiedIcon from "@mui/icons-material/Verified";
 import { Box, Chip, Stack, Typography } from "@mui/material";
 import Image from "next/image";
