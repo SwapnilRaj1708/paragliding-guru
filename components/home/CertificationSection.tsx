@@ -1,7 +1,7 @@
 "use client";
 
 import VerifiedIcon from "@mui/icons-material/Verified";
-import { Box, Chip, Stack, Typography } from "@mui/material";
+import { Box, Chip, Link, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import certificationsContent from "@/content/certifications.json";
 
@@ -73,7 +73,9 @@ export default function CertificationSection() {
 							},
 						}}
 						// biome-ignore lint/security/noDangerouslySetInnerHtml: <this is required as the content is in HTML format>
-						dangerouslySetInnerHTML={{ __html: certificationsContent.description }}
+						dangerouslySetInnerHTML={{
+							__html: certificationsContent.description,
+						}}
 					/>
 				</Stack>
 
@@ -84,59 +86,74 @@ export default function CertificationSection() {
 					justifyContent="center"
 				>
 					{certificationsContent.items.map((certification) => (
-						<Box
+						<Link
+							href={certification.link}
+							target="_blank"
+							rel="noopener noreferrer"
 							key={certification.name}
 							sx={{
-								flex: { md: "1 1 0" },
 								maxWidth: { md: 320 },
-								bgcolor: "rgba(255,255,255,0.03)",
-								border: "1px solid rgba(255,255,255,0.1)",
 								borderRadius: 3,
-								p: 1.5,
-								transition: "all 0.3s ease",
-								"&:hover": {
-									bgcolor: "rgba(255,255,255,0.05)",
-									borderColor: "rgba(255,255,255,0.2)",
-									transform: "translateY(-4px)",
-								},
+								textDecoration: "none",
+								width: "100%",
 							}}
 						>
-							<Stack spacing={2} alignItems="center" textAlign="center">
-								<Box
-									sx={{
-										bgcolor: "#FFFFFF",
-										borderRadius: 2,
-										p: certification.name === "Award" ? 0 : 2,
-										width: "100%",
-										display: "flex",
-										justifyContent: "center",
-										alignItems: "center",
-										height: 100,
-									}}
-								>
-									<Image
-										src={certification.image}
-										alt={certification.name}
-										width={200}
-										height={70}
-										style={{
-											objectFit:
-												certification.name === "Award" ? "contain" : "contain",
-											maxHeight: "100%",
-											width: certification.name === "Award" ? "100%" : "auto",
+							<Box
+								key={certification.name}
+								sx={{
+									flex: { md: "1 1 0" },
+									maxWidth: { md: 320 },
+									bgcolor: "rgba(255,255,255,0.03)",
+									border: "1px solid rgba(255,255,255,0.1)",
+									borderRadius: 3,
+									p: 1.5,
+									transition: "all 0.3s ease",
+									"&:hover": {
+										bgcolor: "rgba(255,255,255,0.05)",
+										borderColor: "rgba(255,255,255,0.2)",
+										transform: "translateY(-4px)",
+									},
+								}}
+							>
+								<Stack spacing={2} alignItems="center" textAlign="center">
+									<Box
+										sx={{
+											bgcolor: "#FFFFFF",
+											borderRadius: 2,
+											p: certification.name === "Award" ? 0 : 2,
+											width: "100%",
+											display: "flex",
+											justifyContent: "center",
+											alignItems: "center",
+											height: 100,
 										}}
-									/>
-								</Box>
-								<Typography
-									sx={{
-										color: "rgba(255,255,255,0.6)",
-										fontSize: 14,
-									}}
-								>
-									{certification.description}
-								</Typography>
-							</Stack>
-						</Box>
+									>
+										<Image
+											src={certification.image}
+											alt={certification.name}
+											width={200}
+											height={70}
+											style={{
+												objectFit:
+													certification.name === "Award"
+														? "contain"
+														: "contain",
+												maxHeight: "100%",
+												width: certification.name === "Award" ? "100%" : "auto",
+											}}
+										/>
+									</Box>
+									<Typography
+										sx={{
+											color: "rgba(255,255,255,0.6)",
+											fontSize: 14,
+										}}
+									>
+										{certification.description}
+									</Typography>
+								</Stack>
+							</Box>
+						</Link>
 					))}
 				</Stack>
 			</Stack>

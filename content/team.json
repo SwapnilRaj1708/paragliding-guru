@@ -1,7 +1,8 @@
 {
   "sectionTitle": "Team Profiles - PG Gurukul",
   "showButtonText": "Meet the Team",
-  "hideButtonText": "Hide Team",
+  "hideButtonText": "Meet the Team",
+  "teamExpandedByDefault": true,
   "members": [
     {
       "name": "Sunidhi Jamwal",

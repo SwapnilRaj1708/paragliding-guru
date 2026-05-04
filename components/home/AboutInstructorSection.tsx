@@ -26,7 +26,7 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export default function AboutInstructorSection() {
-	const [teamOpen, setTeamOpen] = useState(false);
+	const [teamOpen, setTeamOpen] = useState(teamContent.teamExpandedByDefault);
 	const members = teamContent.members;
 
 	return (
@@ -198,9 +198,9 @@ export default function AboutInstructorSection() {
 								</Typography>
 							</Box>
 
-							{instructorContent.paragraphs.map((paragraph, index) => (
+							{instructorContent.paragraphs.map((paragraph) => (
 								<Typography
-									key={index}
+									key={paragraph}
 									sx={{
 										color: "#5A6370",
 										fontSize: 16,
@@ -209,6 +209,7 @@ export default function AboutInstructorSection() {
 											color: "#0D5C8F",
 										},
 									}}
+									// biome-ignore lint/security/noDangerouslySetInnerHtml: <this is required as the content is in HTML format>
 									dangerouslySetInnerHTML={{ __html: paragraph }}
 								/>
 							))}

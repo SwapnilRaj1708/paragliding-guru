@@ -35,6 +35,26 @@ type RequestBody = {
 const MAX_LENGTH = 5000;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function countPhoneDigits(phone: string): number {
+	return phone.replace(/\D/g, "").length;
+}
+
+function parseDobAgeYears(dobIso: string): number | null {
+	const d = new Date(`${dobIso}T12:00:00`);
+	if (Number.isNaN(d.getTime())) return null;
+	const today = new Date();
+	today.setHours(0, 0, 0, 0);
+	const compare = new Date(d);
+	compare.setHours(0, 0, 0, 0);
+	if (compare > today) return null;
+	let age = today.getFullYear() - d.getFullYear();
+	const monthDiff = today.getMonth() - d.getMonth();
+	if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < d.getDate())) {
+		age--;
+	}
+	return age;
+}
+
 function sanitize(value: unknown, maxLength = MAX_LENGTH): string {
 	if (typeof value !== "string") return "";
 	return value.trim().slice(0, maxLength);
@@ -100,21 +120,92 @@ export async function POST(request: Request) {
 		);
 	}
 
+	const fitnessLevels = ["Low", "Moderate", "Good", "Excellent"] as const;
+	const fearHandlingOptions = [
+		"I stay calm under pressure",
+		"I manage fear well after some time",
+		"I'm cautious but willing to push through",
+		"I struggle with fear — looking to improve",
+	] as const;
+
 	if (
 		!app.fullName ||
+		app.fullName.length < 2 ||
 		!app.dob ||
 		!app.email ||
 		!app.phone ||
 		!app.nationality ||
+		app.nationality.length < 2 ||
 		!app.weight ||
 		!app.batch ||
 		!app.education ||
+		app.education.length < 2 ||
 		!app.fitnessLevel ||
 		!app.fearHandling ||
-		!app.motivation
+		!app.motivation ||
+		!app.sportsHistory ||
+		!app.coordinationActivities
 	) {
 		return NextResponse.json(
-			{ ok: false, error: "Please fill in all required fields." },
+			{ ok: false, error: "Please fill in all required fields correctly." },
+			{ status: 400 },
+		);
+	}
+
+	if (!fitnessLevels.includes(app.fitnessLevel as (typeof fitnessLevels)[number])) {
+		return NextResponse.json(
+			{ ok: false, error: "Invalid fitness level." },
+			{ status: 400 },
+		);
+	}
+
+	if (!fearHandlingOptions.includes(app.fearHandling as (typeof fearHandlingOptions)[number])) {
+		return NextResponse.json(
+			{ ok: false, error: "Invalid fear handling response." },
+			{ status: 400 },
+		);
+	}
+
+	const age = parseDobAgeYears(app.dob);
+	if (age === null) {
+		return NextResponse.json(
+			{ ok: false, error: "Please provide a valid date of birth." },
+			{ status: 400 },
+		);
+	}
+	if (age < 10 || age > 100) {
+		return NextResponse.json(
+			{ ok: false, error: "Date of birth is not valid for application." },
+			{ status: 400 },
+		);
+	}
+
+	const digits = countPhoneDigits(app.phone);
+	if (digits < 8 || digits > 15) {
+		return NextResponse.json(
+			{ ok: false, error: "Please provide a valid phone number." },
+			{ status: 400 },
+		);
+	}
+
+	const weightNum = Number.parseFloat(app.weight.replace(",", "."));
+	if (Number.isNaN(weightNum) || weightNum < 25 || weightNum > 250) {
+		return NextResponse.json(
+			{ ok: false, error: "Please provide a valid weight between 25 and 250 kg." },
+			{ status: 400 },
+		);
+	}
+
+	if (app.sportsHistory.length < 4 || app.coordinationActivities.length < 4) {
+		return NextResponse.json(
+			{ ok: false, error: "Please provide at least 4 characters in each text response where required." },
+			{ status: 400 },
+		);
+	}
+
+	if (app.motivation.length < 15) {
+		return NextResponse.json(
+			{ ok: false, error: "Please write at least 15 characters for your motivation." },
 			{ status: 400 },
 		);
 	}

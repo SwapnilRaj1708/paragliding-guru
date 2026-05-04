@@ -1,9 +1,30 @@
 {
   "items": [
-    { "label": "Courses", "href": "#courses", "withCaret": false },
-    { "label": "Gallery", "href": "#gallery", "withCaret": false },
-    { "label": "About", "href": "#about", "withCaret": false },
-    { "label": "FAQs", "href": "#faqs", "withCaret": false }
+    {
+      "label": "About",
+      "href": "#about",
+      "withCaret": false
+    },
+    {
+      "label": "Courses",
+      "href": "#courses",
+      "withCaret": false
+    },
+    {
+      "label": "Testimonials",
+      "href": "#testimonials",
+      "withCaret": false
+    },
+    {
+      "label": "FAQs",
+      "href": "#faqs",
+      "withCaret": false
+    },
+    {
+      "label": "Gallery",
+      "href": "#gallery",
+      "withCaret": false
+    }
   ],
   "ctaText": "Apply Now",
   "ctaLink": "#contact"

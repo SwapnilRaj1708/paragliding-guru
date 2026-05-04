@@ -1,73 +1,82 @@
 // import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import { Box, Chip, Stack, Typography } from "@mui/material";
+import Link from "next/link";
 import galleryContent from "@/content/gallery.json";
 
 type GalleryImage = {
 	src: string;
 	alt: string;
 	span: string;
+	link?: string;
 };
 
-function GalleryImage({ src, alt }: { src: string; alt: string }) {
+function GalleryImage({ src, alt, link }: GalleryImage) {
 	return (
-		<Box
-			sx={{
-				position: "relative",
-				borderRadius: 2,
-				overflow: "hidden",
-				height: "100%",
-				minHeight: { xs: 180, md: 200 },
-				"&:hover": {
-					"& .overlay": {
-						opacity: 1,
-					},
-					"& img": {
-						transform: "scale(1.05)",
-					},
-				},
-			}}
+		<Link
+			href={link ?? ""}
+			target="_blank"
+			rel="noopener noreferrer"
+			key={alt}
+			className="rounded-[24px]"
 		>
 			<Box
-				component="img"
-				src={src}
-				alt={alt}
 				sx={{
-					width: "100%",
+					position: "relative",
+					borderRadius: 2,
+					overflow: "hidden",
 					height: "100%",
-					objectFit: "cover",
-					transition: "transform 0.5s ease",
-				}}
-			/>
-			<Box
-				className="overlay"
-				sx={{
-					position: "absolute",
-					inset: 0,
-					background:
-						"linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.8) 100%)",
-					opacity: 0,
-					transition: "opacity 0.3s ease",
-					display: "flex",
-					flexDirection: "column",
-					justifyContent: "flex-end",
-					p: 2,
+					minHeight: { xs: 180, md: 200 },
+					"&:hover": {
+						"& .overlay": {
+							opacity: 1,
+						},
+						"& img": {
+							transform: "scale(1.05)",
+						},
+					},
 				}}
 			>
-				<Stack
-					direction="row"
-					justifyContent="space-between"
-					alignItems="flex-end"
+				<Box
+					component="img"
+					src={src}
+					alt={alt}
+					sx={{
+						width: "100%",
+						height: "100%",
+						objectFit: "cover",
+						transition: "transform 0.5s ease",
+					}}
+				/>
+				<Box
+					className="overlay"
+					sx={{
+						position: "absolute",
+						inset: 0,
+						background:
+							"linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.8) 100%)",
+						opacity: 0,
+						transition: "opacity 0.3s ease",
+						display: "flex",
+						flexDirection: "column",
+						justifyContent: "flex-end",
+						p: 2,
+					}}
 				>
-					<Typography
-						sx={{
-							color: "#FFFFFF",
-							fontWeight: 500,
-							fontSize: 14,
-						}}
+					<Stack
+						direction="row"
+						justifyContent="space-between"
+						alignItems="flex-end"
 					>
-						{alt}
-					</Typography>
-					{/* <Box
+						<Typography
+							sx={{
+								color: "#FFFFFF",
+								fontWeight: 500,
+								fontSize: 14,
+							}}
+						>
+							{alt}
+						</Typography>
+						{/* <Box
 						sx={{
 							width: 36,
 							height: 36,
@@ -81,9 +90,10 @@ function GalleryImage({ src, alt }: { src: string; alt: string }) {
 					>
 						<ZoomInIcon sx={{ color: "#FFFFFF", fontSize: 20 }} />
 					</Box> */}
-				</Stack>
+					</Stack>
+				</Box>
 			</Box>
-		</Box>
+		</Link>
 	);
 }
 

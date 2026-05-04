@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import { Analytics } from "@vercel/analytics/next";
 import AboutInstructorSection from "../components/home/AboutInstructorSection";
 import CertificationSection from "../components/home/CertificationSection";
 import ContactSection from "../components/home/ContactSection";
@@ -21,6 +22,7 @@ export default function Home() {
 				bgcolor: "#FFFFFF",
 			}}
 		>
+			<Analytics />
 			<Navbar />
 			<Box component="main">
 				<HeroSection />
