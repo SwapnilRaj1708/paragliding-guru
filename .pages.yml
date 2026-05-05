@@ -200,34 +200,42 @@ content:
 
   # MARK: Why Choose Us Section
   - name: whyChooseUs
-    label: Why Choose Us Section
+    label: Why Choose Us Section (This section can only be edited in the code. Please contact the developer to edit this section.)
     path: content/why-choose-us.json
+    description: "This section can only be edited in the code. Please contact the developer to edit this section."
     type: file
     fields:
       - name: badge
         label: Badge Text
         type: string
+        disabled: true
       - name: title
         label: Section Title
         type: string
+        disabled: true
       - name: description
         label: Description
         type: text
+        disabled: true
       - name: reasons
         label: Reasons
         type: object
         list: true
+        disabled: true
         fields:
           - name: title
             label: Title
             type: string
+            disabled: true
           - name: description
             label: Description
             type: text
+            disabled: true
           - name: icon
             label: Icon Name
             type: string
             description: "MUI icon name: SchoolIcon, TrendingUpIcon, CardMembershipIcon, SecurityIcon"
+            disabled: true
 
   # MARK: Courses Section
   - name: courses
