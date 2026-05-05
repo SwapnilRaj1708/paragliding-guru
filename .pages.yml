@@ -198,11 +198,10 @@ content:
             description: "Leave empty if no link is needed"
             required: false
 
-  # MARK: Why Choose Us Section
-  - name: whyChooseUs
-    label: Why Choose Us Section (The content of this section can only be edited in the code. Please contact the developer to edit this section.)
-    path: content/why-choose-us.json
-    description: "This section can only be edited in the code. Please contact the developer to edit this section."
+  # MARK: Why Train With Us Section
+  - name: whyTrainWithUs
+    label: Why Train With Us Section (The content of this section can only be edited in the code. Please contact the developer to edit this section.)
+    path: content/why-train-with-us.json
     type: file
     fields:
       - name: badge
@@ -214,25 +213,6 @@ content:
       - name: description
         label: Description
         type: text
-      - name: reasons
-        label: Reasons
-        type: object
-        list: true
-        readonly: true
-        fields:
-          - name: title
-            label: Title
-            type: string
-            readonly: true
-          - name: description
-            label: Description
-            type: text
-            readonly: true
-          - name: icon
-            label: Icon Name
-            type: string
-            description: "MUI icon name: SchoolIcon, TrendingUpIcon, CardMembershipIcon, SecurityIcon"
-            readonly: true
 
   # MARK: Courses Section
   - name: courses

@@ -3,7 +3,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import SecurityIcon from "@mui/icons-material/Security";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { Box, Chip, Grid, Stack, Typography } from "@mui/material";
-import whyChooseUsContent from "@/content/why-choose-us.json";
+import whyTrainWithUsContent from "@/content/why-train-with-us.json";
 
 const iconMap: Record<string, React.ElementType> = {
 	SchoolIcon,
@@ -17,6 +17,75 @@ const colorConfig = {
 	color: "#acc5e7",
 	bgColor: "rgba(13, 92, 143, 0.1)",
 };
+
+const reasons = [
+	{
+		title: "Expert Instruction",
+		description: (
+			<>
+				Learn from a BHPA-certified instructor with 30+ years of experience. Get
+				real-world skills from a top competition pilot.
+			</>
+		),
+		icon: "SchoolIcon",
+	},
+	{
+		title: "All Skill Levels",
+		description: (
+			<>
+				Structured programs from beginner to advanced. Progress at your pace
+				with personalized attention and flexible scheduling.
+			</>
+		),
+		icon: "TrendingUpIcon",
+	},
+	{
+		title: "Official Licensing",
+		description: (
+			<>
+				The first school in India authorized to issue government-recognized
+				paragliding licenses. Fly legally anywhere.
+			</>
+		),
+		icon: "CardMembershipIcon",
+	},
+	{
+		title: "Safety First",
+		description: 
+			<>
+				Affiliated with{" "}
+				<a
+					href="https://www.atoai.org/"
+					target="_blank"
+					rel="noopener noreferrer"
+					style={{
+						color: "#0D5C8F",
+						textDecoration: "underline",
+						fontWeight: 600,
+					}}
+				>
+					ATOI
+				</a>{" "}
+				&{" "}
+				<a
+					href="https://aeroclubofindia.com/pg-gurukul/"
+					target="_blank"
+					rel="noopener noreferrer"
+					style={{
+						color: "#0D5C8F",
+						textDecoration: "underline",
+						fontWeight: 600,
+					}}
+				>
+					ACI
+				</a>
+				. We follow strict national safety standards with modern equipment and
+				proven protocols.
+			</>
+		,
+		icon: "SecurityIcon",
+	},
+];
 
 export default function WhyChooseUsSection() {
 	return (
@@ -52,7 +121,7 @@ export default function WhyChooseUsSection() {
 			>
 				<Stack spacing={3} alignItems="center" textAlign="center">
 					<Chip
-						label={whyChooseUsContent.badge}
+						label={whyTrainWithUsContent.badge}
 						sx={{
 							bgcolor: "rgba(13, 92, 143, 0.1)",
 							color: "#0D5C8F",
@@ -61,7 +130,7 @@ export default function WhyChooseUsSection() {
 						}}
 					/>
 					<Typography variant="h2" sx={{ color: "#1A1D21" }}>
-						{whyChooseUsContent.title}
+						{whyTrainWithUsContent.title}
 					</Typography>
 					<Typography
 						sx={{
@@ -70,12 +139,12 @@ export default function WhyChooseUsSection() {
 							fontSize: { xs: 16, md: 18 },
 						}}
 					>
-						{whyChooseUsContent.description}
+						{whyTrainWithUsContent.description}
 					</Typography>
 				</Stack>
 
 				<Grid container spacing={3}>
-					{whyChooseUsContent.reasons.map((reason) => {
+					{reasons.map((reason) => {
 						const Icon = iconMap[reason.icon] || SchoolIcon;
 						return (
 							<Grid size={{ xs: 12, sm: 6, lg: 3 }} key={reason.title}>
@@ -111,7 +180,9 @@ export default function WhyChooseUsSection() {
 												transition: "transform 0.3s ease",
 											}}
 										>
-											<Icon sx={{ color: colorConfig.iconColor, fontSize: 32 }} />
+											<Icon
+												sx={{ color: colorConfig.iconColor, fontSize: 32 }}
+											/>
 										</Box>
 										<Box>
 											<Typography
