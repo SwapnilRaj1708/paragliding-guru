@@ -7,6 +7,7 @@
   "items": [
     {
       "video": "/videos/episode-1.mp4",
+      "poster": "/images/poster-1.png",
       "caption": "Ground training is where you build control — the part nobody films."
     },
     {
