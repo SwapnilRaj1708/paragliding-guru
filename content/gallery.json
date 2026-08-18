@@ -6,62 +6,53 @@
 		{
 			"src": "/gallery-1.png",
 			"alt": "Soaring over mountain peaks",
-			"span": "large",
-			"link": ""
+			"span": "large"
 		},
 		{
 			"src": "/gallery-2.png",
 			"alt": "Flying through clouds",
-			"span": "small",
-			"link": ""
+			"span": "small"
 		},
 		{
-			"src": "/gallery-3.png",
-			"alt": "Pre-flight equipment check",
-			"span": "small",
-			"link": ""
+			"src": "/images/img.jpg",
+			"alt": "Ready for ground run",
+			"span": "small"
 		},
 		{
 			"src": "/gallery-4.png",
 			"alt": "Thermal riding",
-			"span": "small",
-			"link": ""
+			"span": "small"
 		},
 		{
 			"src": "/gallery-5.png",
 			"alt": "Panoramic valley view",
-			"span": "wide",
-			"link": ""
+			"span": "wide"
 		},
 		{
 			"src": "/gallery-6.png",
 			"alt": "Golden hour flight",
-			"span": "small",
-			"link": ""
+			"span": "small"
 		},
 		{
 			"src": "/gallery-7.png",
 			"alt": "Training session",
-			"span": "small",
-			"link": ""
+			"span": "small"
 		},
 		{
 			"src": "/gallery-8.png",
 			"alt": "Adventure flight",
-			"span": "small",
-			"link": ""
+			"span": "small"
 		},
 		{
 			"src": "/gallery-10.png",
 			"alt": "Himalayan landscape",
-			"span": "wide",
-			"link": ""
+			"span": "wide"
 		},
 		{
 			"src": "/gallery-9.png",
 			"alt": "Valley crossing",
-			"span": "large",
-			"link": ""
-		}
+			"span": "large"
+		},
+		{}
 	]
 }

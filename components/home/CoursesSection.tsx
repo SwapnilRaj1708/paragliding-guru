@@ -48,8 +48,14 @@ type Course = {
 	level: "Beginner" | "Intermediate" | "Advanced";
 	tag: string;
 	featured?: boolean;
+	image?: string;
 	schedule?: CourseSchedule;
 };
+
+/** Falls back to the shared course visual when no image is set in the CMS. */
+function courseImageSrc(course: Course) {
+	return course.image?.trim() || assets.gallery9.src;
+}
 
 const levelColors = {
 	Beginner: { bg: "#ceeedc", color: "#0a5b2f" },
@@ -299,7 +305,7 @@ function CourseCard({
 			>
 				<Box
 					component="img"
-					src={assets.gallery9.src}
+					src={courseImageSrc(course)}
 					alt={course.title}
 					sx={{
 						width: "100%",
@@ -466,7 +472,7 @@ function CourseDetailsDialog({
 			>
 				<Box
 					component="img"
-					src={assets.gallery9.src}
+					src={courseImageSrc(course)}
 					alt={course.title}
 					sx={{
 						width: "100%",

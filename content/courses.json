@@ -1,7 +1,7 @@
 {
   "badge": "Our Courses",
   "title": "Find Your Perfect Course",
-  "description": "From first flight to cross-country adventures, we have a program tailored for your goals.",
+  "description": "From first flight to cross-country adventures, we have a program tailored for your goals. Upcoming batch in Oct 2026. ",
   "items": [
     {
       "title": "P1 + P2",
@@ -15,7 +15,10 @@
       "featured": true,
       "schedule": {
         "sessions": [
-          "Upcoming batch in Oct 2026"
+          "9th November(Only 2 slots left for 40-52kg and 88-100 kg)",
+          "23rd November",
+          "7th December",
+          "21st December"
         ]
       }
     },
@@ -31,7 +34,10 @@
       "featured": true,
       "schedule": {
         "sessions": [
-          "Upcoming batch in Oct 2026"
+          "9th November(Only 2 slots left for 40-52kg and 88-100 kg)",
+          "23rd November",
+          "7th December",
+          "21st December"
         ]
       }
     },
@@ -47,7 +53,10 @@
       "featured": false,
       "schedule": {
         "sessions": [
-          "Upcoming batch in Oct 2026"
+          "15th November(Only 2 slots left for 40-52kg and 88-100 kg)",
+          "1st December",
+          "14th December",
+          "28th December"
         ]
       }
     },
@@ -63,7 +72,10 @@
       "featured": true,
       "schedule": {
         "sessions": [
-          "Upcoming batch in Oct 2026"
+          "9th November(Only 2 slots left for 40-52kg and 88-100 kg)",
+          "23rd November",
+          "7th December",
+          "21st December"
         ]
       }
     },
@@ -76,7 +88,13 @@
       "cost": "₹32,000",
       "level": "Advanced",
       "tag": "Safety Focus",
-      "featured": false
+      "featured": false,
+      "schedule": {
+        "sessions": [
+          "28th Sept - 2nd Oct",
+          "17th Oct - 20th Oct"
+        ]
+      }
     },
     {
       "title": "Paramotoring Course",
@@ -92,16 +110,16 @@
     {
       "title": "XC Cross-Country",
       "primaryDescription": "Learn the fine points of flying distance with paragliders.",
-      "secondaryDescription": "As name suggest we teach the fine points of flying distance with paragliders. Can help in starting you first cross country or just improving your XC capabilities. most of concepts and theories covered in first three days then is guiding and debriefing mostly. Though there is always a finer element to learn.",
+      "secondaryDescription": "As name suggest we teach the fine points of flying distance with paragliders. Can help in starting you first cross country or just improving your XC capabilities. most of concepts and theories covered in first three days then is guiding and debriefing mostly. Though there is always a finer element to learn. \nPick any day from 22nd Nov to 8th November",
       "duration": "3 Days (Minimum)",
       "venue": "Bir",
       "cost": "₹8,000/day",
       "level": "Advanced",
       "tag": "Adventure",
-      "featured": false,
+      "featured": true,
       "schedule": {
         "sessions": [
-          "Upcoming batch in Oct 2026"
+          "22nd to 8th November"
         ]
       }
     }

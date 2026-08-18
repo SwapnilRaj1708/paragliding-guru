@@ -2,8 +2,16 @@
 # Documentation: https://pagescms.org/docs/configuration
 
 media:
-  input: public/images
-  output: /images
+  # First entry is the default media source (used by all `type: image` fields).
+  - name: images
+    label: Images
+    input: public/images
+    output: /images
+  - name: videos
+    label: Videos
+    input: public/videos
+    output: /videos
+    extensions: [mp4, webm]
 
 content:
   # MARK: Site-wide settings
@@ -237,6 +245,11 @@ content:
           - name: title
             label: Course Title
             type: string
+          - name: image
+            label: Course Image
+            type: image
+            description: "Leave empty to use the default course image."
+            required: false
           - name: primaryDescription
             label: Primary Description
             type: string
@@ -360,6 +373,50 @@ content:
       - name: ctaLinkText
         label: CTA Link Text
         type: string
+
+  # MARK: Reels Section
+  - name: reels
+    label: Reels
+    path: content/reels.json
+    type: file
+    fields:
+      - name: badge
+        label: Badge Text
+        type: string
+      - name: title
+        label: Section Title
+        type: string
+      - name: description
+        label: Description
+        type: text
+        description: "The Instagram handle below is appended as a link at the end of this text."
+      - name: instagramHandle
+        label: Instagram Handle
+        type: string
+        description: "Shown as the link text (e.g. @pg_gurukul)"
+      - name: instagramUrl
+        label: Instagram URL
+        type: string
+      - name: items
+        label: Reels
+        type: object
+        list: true
+        description: "Drag to reorder. A reel without a video shows an empty placeholder slot linking to Instagram."
+        fields:
+          - name: video
+            label: Video (MP4)
+            type: file
+            options:
+              media: videos
+            required: false
+          - name: poster
+            label: Poster Image (still frame shown before play)
+            type: image
+            required: false
+          - name: caption
+            label: Caption
+            type: string
+            required: false
 
   # MARK: Gallery Section
   - name: gallery

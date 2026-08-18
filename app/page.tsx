@@ -9,6 +9,7 @@ import Footer from "../components/home/Footer";
 import GallerySection from "../components/home/GallerySection";
 import HeroSection from "../components/home/HeroSection";
 import Navbar from "../components/home/Navbar";
+import ReelsSection from "../components/home/ReelsSection";
 import TestimonialsSection from "../components/home/TestimonialsSection";
 import WhyChooseUsSection from "../components/home/WhyChooseUsSection";
 
@@ -32,6 +33,7 @@ export default function Home() {
 				<CoursesSection />
 				<TestimonialsSection />
 				<FaqSection />
+				<ReelsSection />
 				<GallerySection />
 				<ContactSection />
 			</Box>

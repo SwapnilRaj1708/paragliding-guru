@@ -21,6 +21,11 @@
       "withCaret": false
     },
     {
+      "label": "Reels",
+      "href": "#reels",
+      "withCaret": false
+    },
+    {
       "label": "Gallery",
       "href": "#gallery",
       "withCaret": false
